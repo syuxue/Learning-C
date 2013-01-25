@@ -1,0 +1,14 @@
+"section_4.3_rpn_calculator.c"
+	Reverse Polish Notation
+
+"section_5.10_exercise_5.13_tail.c"
+	unix:tail & head
+
+"section_5.11_exercise_5.17_sort.c"
+	unix:sort
+
+"section_5.12_exercise_5.20_declaration_parser.c"
+	Declaration Parser (Recursive-descent Parser)
+
+"section_6.5_exercise_6.2_group_variable.c"
+	the Best function Gettoken so far
