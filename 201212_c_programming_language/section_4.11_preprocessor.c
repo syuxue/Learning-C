@@ -22,7 +22,7 @@
 		printf("********** Macro Concatenation End **********\n");								\
 		// ## = #front#back
 
-//TODO:ÈçºÎÊµÏÖÏñPHPÖĞµÄ$$val,$$func()
+//TODO:å¦‚ä½•ç”¨å®å®ç°ç±»ä¼¼äºPHPä¸­çš„$$val,$$func()å¯å˜å˜é‡
 #define call_func(func, argv) func(argv)
 #define call_val(val) val
 
@@ -56,26 +56,26 @@ int main(int argc, char *argv[])
 	printf(HDR "\n");
 	printf(DD "\n");
 	
-	//"forever" µ¥´¿Ìæ»»Îª "for (;;)"
+	//"forever" å•çº¯æ›¿æ¢ä¸º "for (;;)"
 	/*forever {
 		printf("c");
 	}*/
 
 	printf("wo cao" "yuan lai hai ke yi zhe yang" "\n");
 
-	//×Ö·û´®
+	//å­—ç¬¦ä¸²
 	printf("%s" "\n",string);
-	#undef string //È¡Ïûºê¶¨Òå
+	#undef string //å–æ¶ˆå®å®šä¹‰
 	char string[] = "houhou";
 	printf("%s\n",string);
 	printf("%s%s\n",string,string2);
 
-	//º¯Êı
+	//å‡½æ•°
 	printf("%d\n",max(10,90));
-	printf("%d\n",max(ret_number(),90)); //´«ÈëµÄº¯Êı»á±»callÁ½´Î£¬Èç¹û´«ÈëµÄÊÇi++£¬ÄÇÃ´½á¹û¾Í»áÊÜµ½Ó°Ïì
+	printf("%d\n",max(ret_number(),90)); //ä¼ å…¥çš„å‡½æ•°ä¼šè¢«callä¸¤æ¬¡ï¼Œå¦‚æœä¼ å…¥çš„æ˜¯i++ï¼Œé‚£ä¹ˆç»“æœå°±ä¼šå—åˆ°å½±å“
 
 	/*
-	getcharµÄÀ´Àú£¬ÔÚµ±Ç°°æ±¾ÏÂ²»ÊÇÍ¨¹ıdefineÅªµÃ
+	getcharçš„æ¥å†ï¼Œåœ¨å½“å‰ç‰ˆæœ¬ä¸‹ä¸æ˜¯é€šè¿‡defineå¼„å¾—
 	#define putchar(c) putc((c), stdout)
 	#define getchar() getc(stdin)
 	*/
@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
 	#define getchar() getc(stdin)
 	//printf("%c\n",getchar());
 
-	//×÷Îªº¯ÊıÊ±´©ÈëµÄ²¢·Ç²ÎÊı
+	//ä½œä¸ºå‡½æ•°æ—¶ç©¿å…¥çš„å¹¶éå‚æ•°
 	int asd = 10;
 	printd(asd);
 	printd(10 / 1.23);
