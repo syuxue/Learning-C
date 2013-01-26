@@ -1,5 +1,6 @@
 /* ****************************** Definition ****************************** */
 #define M_printd(val)		printf(#val " = %d\n", val)
+#define M_printf(val)		printf(#val " = %f\n", val)
 
 /* ****************************** Bash ****************************** */
 #define M_bash_default		"\e[0m"

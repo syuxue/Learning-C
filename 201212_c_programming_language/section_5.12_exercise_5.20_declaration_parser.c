@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "m_function.h"
+#include "../include/m_function.h"
 
 /* ****************************** Definition ****************************** */
 #define NOTATION_LENGTH					1024

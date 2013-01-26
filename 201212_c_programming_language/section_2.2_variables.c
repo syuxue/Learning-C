@@ -4,26 +4,35 @@
 #define LONGINT 21474836480000000U
 enum months {JAN = 1, FEB, MAR, APR, MAY, JUN, JUL, AUG, SEP, OCT, NOC, DEC};
 
-main()
+int main()
 {
 	int i;
 	
+	// Hex
+	{
+		int h_8  = 077;
+		int h_10 = 7;
+		int h_16 = 0xFF;
+		printf("%d\n", h_8);
+	}
+	return 0;
+
 	printf("%c",'\xb');//Tab
 	//printf("%c",'\007');//Bell
 	printf("%c",'\x6d');//char:m
 	printf("\n");
 	
-	//ÓÃint´æ×Ö·û´®
+	//ç”¨intå­˜å­—ç¬¦ä¸²
 	int stringi[3];
 	stringi[0] = 's';
 	stringi[1] = 'b';
 	stringi[2] = '\0';
 	for (i = 0; i < 3; i++) 
 		printf("%c",stringi[i]);
-	printf("%s",stringi);//Ö»ÄÜÊä³öµÚÒ»¸ö×Ö·û
+	printf("%s",stringi);//åªèƒ½è¾“å‡ºç¬¬ä¸€ä¸ªå­—ç¬¦
 	printf("\n");
 
-	//ÓÃchar´æ×Ö·û´®
+	//ç”¨charå­˜å­—ç¬¦ä¸²
 	char stringc[3];
 	stringc[0] = 's';
 	stringc[1] = 'b';
