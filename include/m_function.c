@@ -10,6 +10,35 @@ void m_helloworld(void)
 	printf("Hello, world !\n");
 }
 
+/* ****************************** Bash Function ****************************** */
+
+void m_bash_clear(void)
+{
+	printf("\e[2J");
+}
+
+void m_bash_pause(const char *message)
+{
+	int newline;
+	char *p, *tail;
+
+	newline = 0;
+	if (message) {
+		for (tail = (char *)message + m_strlen(message) - 1; isspace(*tail) && tail >= message; tail--)
+			;
+		for (p = (char *)message; p <= tail; p++) {
+			printf("%c", *p);
+			if (*p == '\n')
+				newline++;
+		}
+		printf("\n");
+	} else
+		printf("press Enter to continue ...\n");
+	while (getchar() != '\n')
+		;
+	printf("\e[%dA\e[J", newline + 2);
+}
+
 /* ****************************** Input/Output Function ****************************** */
 
 int m_getline(char *str, int maxsize)
@@ -25,49 +54,15 @@ int m_getline(char *str, int maxsize)
 	return p - str;
 }
 
-void m_ui_clear(void)
-{
-	printf("\e[2J");
-}
-
-void m_ui_pause(const char *message)
-{
-	int newline;
-	char *p, *tail;
-
-	newline = 0;
-	if (message) {
-		for (tail = (char *)message + m_strlen(message) - 1; isspace(*tail) && tail >= message; tail--) 
-			;
-		for (p = (char *)message; p <= tail; p++) {
-			printf("%c", *p);
-			if (*p == '\n')
-				newline++;
-		}
-		printf("\n");
-	} else
-		printf("press Enter to continue ...\n");
-	while (getchar() != '\n')
-		;
-	printf("\e[%dA\e[J", newline + 2);
-}
-
 /* ****************************** String Function ****************************** */
-
-int m_strlen(const char *str)
-{
-	char *p = (char *)str;
-
-	while (*p != '\0') p++;
-	return p - str;
-}
 
 char *m_strcpy(char *to, const char *from)
 {
 	char *p;
 
 	p = to;
-	while ((*p++ = *from++) != '\0') ;
+	while ((*p++ = *from++) != '\0')
+		;
 	return to;
 }
 
@@ -75,7 +70,8 @@ char *m_strncpy(char *to, const char *from, int n)
 {
 	char *p;
 	
-	for (p = to; p - to < n && (*p = *from++) != '\0'; p++) ;
+	for (p = to; p - to < n && (*p = *from++) != '\0'; p++)
+		;
 	*p = '\0';
 
 	return to;
@@ -147,9 +143,11 @@ char *m_strrev(char *str)
 char *m_trim(char *str)
 {
 	char *head, *tail;
-	for (tail = str + m_strlen(str) - 1; isspace(*tail) && tail >= str; tail--) ;
+	for (tail = str + m_strlen(str) - 1; isspace(*tail) && tail >= str; tail--)
+		;
 	*(tail + 1) = '\0';
-	for (head = str; isspace(*head) && *head != '\0'; head++) ;
+	for (head = str; isspace(*head) && *head != '\0'; head++)
+		;
 	if (head != str)
 		m_strncpy(str, head, tail - head + 1);
 	return str;
@@ -177,9 +175,19 @@ char *m_strtoupper(char *str)
 	return str;
 }
 
+int m_strlen(const char *str)
+{
+	char *p = (char *)str;
+
+	while (*p != '\0')
+		p++;
+	return p - str;
+}
+
 int m_strcmp(const char *to, const char *from)
 {
-	for (; *to == *from && *to != '\0'; to++, from++) ;
+	for (; *to == *from && *to != '\0'; to++, from++)
+		;
 	return *to - *from;
 }
 
@@ -187,7 +195,8 @@ int m_strncmp(const char *to, const char *from, int n)
 {
 	int i;
 
-	for (i = 0; i < n && *to == *from && *to != '\0'; i++, to++, from++) ;
+	for (i = 0; i < n && *to == *from && *to != '\0'; i++, to++, from++)
+		;
 	return i >= n ? 0 : *to - *from;
 }
 
@@ -214,16 +223,20 @@ int m_strpos(const char *str, const char *needle)
 	int len_needle;
 	char *ps;
 
-	if (*needle == '\0') return -1;
+	if (*needle == '\0')
+		return -1;
 	len_needle = m_strlen(needle);
 	for (ps = (char *)str; *ps != '\0'; ps++)
-		if (m_strncmp(ps, needle, len_needle) == 0) return ps - str;
+		if (m_strncmp(ps, needle, len_needle) == 0)
+			return ps - str;
 	return -1;
 	/* Original version on Page:69
-	int i,j,k;
+	int i, j, k;
 	for (i = 0; str[i] != '\0'; i++) {
-		for (j = i,k = 0; needle[k] != '\0' && str[j] == needle[k]; j++,k++) ;
-		if (needle[k] == '\0') return i;
+		for (j = i, k = 0; needle[k] != '\0' && str[j] == needle[k]; j++, k++)
+			;
+		if (needle[k] == '\0')
+			return i;
 	}
 	return -1;*/
 }
@@ -233,10 +246,12 @@ int m_strrpos(const char *str, const char *needle)
 	int len_needle;
 	char *ps;
 
-	if (*needle == '\0') return -1;
+	if (*needle == '\0')
+		return -1;
 	len_needle = m_strlen(needle);
 	for (ps = (char *)str + m_strlen(str) - len_needle; ps >= str ; ps--) {
-		if (m_strncmp(ps, needle, len_needle) == 0) return ps - str;
+		if (m_strncmp(ps, needle, len_needle) == 0)
+			return ps - str;
 	}
 	return -1;
 }
@@ -245,13 +260,14 @@ int m_strrpos(const char *str, const char *needle)
 /* Reference */ // 自己动手写C语言浮点数转换字符串函数@http://www.cnblogs.com/maozefa/archive/2011/12/21/2295731.html
 /* Reference */ // 浮点数的存储格式@http://blog.csdn.net/ganxingming/article/details/1449526
 
-void m_int2str(int dec, char str[], int base, int minwidth, char filler)
+char *m_int2str(int dec, char *str, int base, int minwidth, char filler)
 {
-	int i,sign;
-	char basemap[] = "0123456789abcdefghijklmnopqrstuvwxyz";
+	static char basemap[] = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+	int sign;
+	char *p;
 
 	if (base < 2 || base > 36) {
-		fprintf(stderr, "error: Cannot support base %d\n",base);
+		fprintf(stderr, "error: Cannot support base %d\n", base);
 		exit(EXIT_FAILURE);
 	}
 
@@ -259,16 +275,17 @@ void m_int2str(int dec, char str[], int base, int minwidth, char filler)
 	sign = dec < 0 ? -1 : 1;
 
 	//Dec to any base
-	i = 0;
+	p = str;
 	do {
-		str[i++] = basemap[(dec % base) * sign];
+		*(p++) = basemap[(dec % base) * sign];
 	} while (dec /= base);
-	if (sign < 0) str[i++] = '-';
-	while (i < minwidth)
-		str[i++] = filler;
-	str[i] = '\0';
+	if (sign < 0)
+		*(p++) = '-';
+	while (p - str < minwidth)
+		*(p++) = filler;
+	*p = '\0';
 
-	m_strrev(str);
+	return m_strrev(str);
 }
 
 int m_str2int(const char *str, unsigned int base)
@@ -278,11 +295,11 @@ int m_str2int(const char *str, unsigned int base)
 
 double m_str2float(const char *str, unsigned int base)
 {
-	int sign,c;
-	double dec,power;
+	int sign, c;
+	double dec, power;
 
 	if (base < 2 || base > 36) {
-		fprintf(stderr, "error: Cannot support base %d\n",base);
+		fprintf(stderr, "error: Cannot support base %d\n", base);
 		exit(EXIT_FAILURE);
 	}
 
@@ -313,7 +330,9 @@ double m_str2float(const char *str, unsigned int base)
 	return power > 0 ? sign * dec / power : sign * dec;
 }
 
-/* ****************************** Memory Function[DEPRECATED] ****************************** */
+/* ****************************** [Experimental] ****************************** */
+
+/* ****************************** [Deprecated] ****************************** */
 #define ALLOCSIZE 1048576
 static char allocbuf[ALLOCSIZE];
 static char *allocp = allocbuf;
@@ -334,19 +353,3 @@ void m_afree(char *p)
 	if (p >= allocbuf && p < allocbuf + ALLOCSIZE)
 		allocp = p;
 }
-
-/* ****************************** Experimental ****************************** */
-
-int m_decimallen(double val)
-{
-	int bias;
-
-	/*
-	TODO:直接对double变量的存储进行操作保证数据准确
-	因为精度问题，参数为3.14e-21时会出错
-	*/
-	for (bias = 0; val !=  (double)(long) val; bias++,val *= 10) ;
-	return bias;
-}
-
-//End Of File
