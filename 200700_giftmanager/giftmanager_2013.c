@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
-#include "../m_function.h"
+#include "../include/m_function.h"
 
 /* ****************************** Definition ****************************** */
 
-#define TERMINAL_ROW 10
-#define GIFT_NUM 40
+#define TERMINAL_ROW 40
+#define GIFT_NUM 100
 #define GIFT_NAME_LENGTH 10
 #define GIFT_ORIGIN_LENGTH 4
 #define GIFT_ID_START 10001
@@ -20,12 +20,12 @@ struct date {
 };
 struct gift {
 	unsigned int id;
-	char name[GIFT_NAME_LENGTH];
+	char name[GIFT_NAME_LENGTH + 1];
 	unsigned int price;
 	unsigned int cost;
 	unsigned int qtt;
 	unsigned short kind;
-	char origin[GIFT_ORIGIN_LENGTH];
+	char origin[GIFT_ORIGIN_LENGTH + 1];
 	struct date date;
 };
 
@@ -82,11 +82,12 @@ void gift_random_text(char *text, int len)
 	char *p;
 
 	srand((unsigned int)text);
-	len = (unsigned int)rand() % len / 2 + len / 2;
+	len = (unsigned int)rand() % (len / 2) + len / 2;
 	p = text;
 	*p++ = (unsigned int)rand() % 26 + 65;
 	while (p < text + len)
 		*p++ = (unsigned int)rand() % 26 + 97;
+	*p = '\0';
 }
 
 void gift_random(struct gift *gift)
@@ -94,7 +95,7 @@ void gift_random(struct gift *gift)
 	srand((unsigned int)gift);
 	gift_random_text(gift->name, GIFT_NAME_LENGTH);
 	gift_random_text(gift->origin, GIFT_ORIGIN_LENGTH);
-	gift->price = (unsigned int)rand() % 1000;
+	gift->price = (unsigned int)rand() % 1000 + 1;
 	gift->cost = (unsigned int)rand() % gift->price + 1;
 	gift->kind = (unsigned int)rand() % 9;
 	gift->qtt = (unsigned int)rand() % 100;
