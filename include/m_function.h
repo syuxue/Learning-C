@@ -1,6 +1,6 @@
 /* ****************************** Definition ****************************** */
 #define M_printd(val)		printf(#val " = %d\n", val)
-#define M_printf(val)		printf(#val " = %f\n", val)
+#define M_printf(val)		printf(#val " = %g\n", val)
 
 /* ****************************** Learn Function ****************************** */
 void	m_helloworld(void);
