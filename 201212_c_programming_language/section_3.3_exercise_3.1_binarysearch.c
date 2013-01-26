@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int binsearch(int x, int v[], int n);
+int binsearch_1(int x, int v[], int n);
 int binsearch_2(int x, int v[], int n);
 int binsearch_3(int x, int v[], int n);
 
@@ -11,14 +11,14 @@ int main()
 	size = sizeof(array) / 4;
 	
 	int i,j;
-	if(1){
+	if(0){
 		for (i = 0; i < size; i++)
 			printf("%d,",binsearch_2(array[i],array,size));
 		printf("\n");
 	} else {
 		for (j = 0; j < 10000000; j++) {
 			for (i = 0; i < size; i++){
-				binsearch_3(array[i],array,size);
+				binsearch_2(array[i],array,size);
 			}
 		}
 	}
@@ -26,7 +26,7 @@ int main()
 	return 0;
 }
 
-int binsearch(int x, int v[], int n)
+int binsearch_1(int x, int v[], int n)
 {
 	int low = 0;
 	int high = n - 1;
@@ -47,7 +47,6 @@ int binsearch(int x, int v[], int n)
 	return -1;
 }
 
-//FIXME:测试中说再写一个while中只test一次的方法，然后measure效率，他娘的measure出来可能更多
 int binsearch_2(int x, int v[], int n)
 {
 	int low = 0;
