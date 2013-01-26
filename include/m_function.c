@@ -100,7 +100,8 @@ char *m_strinsert(char *to, const char *from, int pos)
 
 	tolen = m_strlen(to);
 	fromlen = m_strlen(from);
-	tocpy = malloc((tolen + fromlen) * sizeof *to + 1);
+	if ((tocpy = malloc((tolen + fromlen) * sizeof *to + 1)) == NULL)
+		return NULL;
 	m_strncpy(tocpy, to, pos);
 	m_strcpy(tocpy + pos, from);
 	m_strcpy(tocpy + pos + fromlen, to + pos);
