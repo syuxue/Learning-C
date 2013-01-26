@@ -33,7 +33,7 @@ struct gift {
 
 void ui_menu(void)
 {
-	m_ui_clear();
+	m_bash_clear();
 	printf("\n********Gift Manager*******\n");
 	printf("\n---------MENU---------");
 	printf("\n1. View    Gift Info");
@@ -53,7 +53,7 @@ void ui_menu(void)
 
 void ui_gift_title(void)
 {
-	m_ui_clear();
+	m_bash_clear();
 	printf("                * * * * * * * G I F T   L I S T * * * * * * * \n");
 	printf("    NUMBER          NAME    KIND    PRICE    COST    QUANTITY    ORIGIN          DATE    \n");
 	printf("-----------------------------------------------------------------------------------------\n");
@@ -131,7 +131,7 @@ void gift_showlist(struct gift *giftlist, unsigned num)
 	for (gift = giftlist; gift < giftlist + GIFT_NUM; gift++) {
 		ui_gift_display(gift);
 		if ((gift - giftlist + 1) % TERMINAL_ROW == 0 && gift != giftlist + GIFT_NUM - 1) {
-			m_ui_pause(NULL);
+			m_bash_pause(NULL);
 		}
 	}
 }
