@@ -42,8 +42,8 @@ int		m_strrpos(const char *str, const char *needle);
 
 /* ****************************** Math Function ****************************** */
 void	m_int2str(int dec, char str[], int base, int minwidth, char filler);
-int		m_str2int(const char str[], int base);
-double	m_str2float(const char str[], int base);
+int		m_str2int(const char *str, unsigned int base);
+double	m_str2float(const char *str, unsigned int base);
 
 /* ****************************** Memory Function[DEPRECATED] ****************************** */
 char	*m_alloc(int n);

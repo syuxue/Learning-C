@@ -100,11 +100,12 @@ char *m_strinsert(char *to, const char *from, int pos)
 
 	tolen = m_strlen(to);
 	fromlen = m_strlen(from);
-	tocpy = malloc((tolen + fromlen) * sizeof *to);
+	tocpy = malloc((tolen + fromlen) * sizeof *to + 1);
 	m_strncpy(tocpy, to, pos);
 	m_strcpy(tocpy + pos, from);
 	m_strcpy(tocpy + pos + fromlen, to + pos);
 	m_strcpy(to, tocpy);
+	free(tocpy);
 	return to;
 }
 
@@ -269,16 +270,14 @@ void m_int2str(int dec, char str[], int base, int minwidth, char filler)
 	m_strrev(str);
 }
 
-int m_str2int(const char str[], int base)
+int m_str2int(const char *str, unsigned int base)
 {
-	double m_str2float();
-
 	return (int) m_str2float(str, base);
 }
 
-double m_str2float(const char str[], int base)
+double m_str2float(const char *str, unsigned int base)
 {
-	int i,sign,c;
+	int sign,c;
 	double dec,power;
 
 	if (base < 2 || base > 36) {
@@ -286,26 +285,27 @@ double m_str2float(const char str[], int base)
 		exit(EXIT_FAILURE);
 	}
 
-	power = dec = i = 0;
+	power = dec = 0;
 	//Sign
-	sign = str[i] == '-' ? -1 : 1;
-	if (str[i] == '-' || str[i] == '+')	i++;
+	sign = *str == '-' ? -1 : 1;
+	if (*str == '-' || *str == '+')	str++;
 
 	//Any base to dec
-	for (; str[i] != '\0'; i++) {
-		if (power == 0 && str[i] == '.') {
+	for (; *str != '\0'; str++) {
+		if (power == 0 && *str == '.') {
 			power = 1;
 			continue;
-		} else if (str[i] >= '0' && str[i] <= '9') {
-			c = str[i] - '0';
-		} else if (str[i] >= 'a' && str[i] <= 'z') {
-			c = str[i] - 'a' + 10;
-		} else if (str[i] >= 'A' && str[i] <= 'Z') {
-			c = str[i] - 'A' + 10;
+		} else if (isdigit(*str)) {
+			c = *str - '0';
+		} else if (islower(*str)) {
+			c = *str - 'a' + 10;
+		} else if (isupper(*str)) {
+			c = *str - 'A' + 10;
 		} else {
 			break;
 		}
-		if (power > 0) power *= base;
+		if (power > 0)
+			power *= base;
 		dec = (dec * base) + c;
 	}
 
