@@ -20,13 +20,13 @@ void m_bash_clear(void)
 void m_bash_pause(const char *message)
 {
 	int newline;
-	char *p, *tail;
+	const char *p, *tail;
 
 	newline = 0;
 	if (message) {
-		for (tail = (char *)message + m_strlen(message) - 1; isspace(*tail) && tail >= message; tail--)
+		for (tail = message + m_strlen(message) - 1; isspace(*tail) && tail >= message; tail--)
 			;
-		for (p = (char *)message; p <= tail; p++) {
+		for (p = message; p <= tail; p++) {
 			printf("%c", *p);
 			if (*p == '\n')
 				newline++;
@@ -69,7 +69,7 @@ char *m_strcpy(char *to, const char *from)
 char *m_strncpy(char *to, const char *from, int n)
 {
 	char *p;
-	
+
 	for (p = to; p - to < n && (*p = *from++) != '\0'; p++)
 		;
 	*p = '\0';
@@ -92,17 +92,25 @@ char *m_strncat(char *to, const char *from, int n)
 char *m_strinsert(char *to, const char *from, int pos)
 {
 	int tolen, fromlen;
-	char *tocpy;
+	char *pto;
+	const char *pfr;
 
 	tolen = m_strlen(to);
 	fromlen = m_strlen(from);
-	if ((tocpy = malloc((tolen + fromlen) * sizeof *to + 1)) == NULL)
-		return NULL;
-	m_strncpy(tocpy, to, pos);
-	m_strcpy(tocpy + pos, from);
-	m_strcpy(tocpy + pos + fromlen, to + pos);
-	m_strcpy(to, tocpy);
-	free(tocpy);
+
+	if (pos > tolen)
+		pos = tolen;
+	else if (pos < 0) {
+		if (tolen + pos > 0)
+			pos = tolen + pos;
+		else
+			pos = 0;
+	}
+
+	for (pto = to + tolen + fromlen, pfr = to + tolen; pfr >= to + pos; pto--, pfr--)
+		*pto = *pfr;
+	for (pto = to + pos, pfr = from; *pfr != '\0'; pto++, pfr++)
+		*pto = *pfr;
 	return to;
 }
 
@@ -143,6 +151,7 @@ char *m_strrev(char *str)
 char *m_trim(char *str)
 {
 	char *head, *tail;
+
 	for (tail = str + m_strlen(str) - 1; isspace(*tail) && tail >= str; tail--)
 		;
 	*(tail + 1) = '\0';
@@ -177,7 +186,7 @@ char *m_strtoupper(char *str)
 
 int m_strlen(const char *str)
 {
-	char *p = (char *)str;
+	const char *p = str;
 
 	while (*p != '\0')
 		p++;
@@ -221,12 +230,12 @@ int m_strend(const char *str, const char *needle)
 int m_strpos(const char *str, const char *needle)
 {
 	int len_needle;
-	char *ps;
+	const char *ps;
 
 	if (*needle == '\0')
 		return -1;
 	len_needle = m_strlen(needle);
-	for (ps = (char *)str; *ps != '\0'; ps++)
+	for (ps = str; *ps != '\0'; ps++)
 		if (m_strncmp(ps, needle, len_needle) == 0)
 			return ps - str;
 	return -1;
@@ -244,12 +253,12 @@ int m_strpos(const char *str, const char *needle)
 int m_strrpos(const char *str, const char *needle)
 {
 	int len_needle;
-	char *ps;
+	const char *ps;
 
 	if (*needle == '\0')
 		return -1;
 	len_needle = m_strlen(needle);
-	for (ps = (char *)str + m_strlen(str) - len_needle; ps >= str ; ps--) {
+	for (ps = str + m_strlen(str) - len_needle; ps >= str ; ps--) {
 		if (m_strncmp(ps, needle, len_needle) == 0)
 			return ps - str;
 	}
@@ -257,8 +266,6 @@ int m_strrpos(const char *str, const char *needle)
 }
 
 /* ****************************** Math Function ****************************** */
-/* Reference */ // 自己动手写C语言浮点数转换字符串函数@http://www.cnblogs.com/maozefa/archive/2011/12/21/2295731.html
-/* Reference */ // 浮点数的存储格式@http://blog.csdn.net/ganxingming/article/details/1449526
 
 char *m_int2str(int dec, char *str, int base, int minwidth, char filler)
 {
@@ -306,7 +313,8 @@ double m_str2float(const char *str, unsigned int base)
 	power = dec = 0;
 	//Sign
 	sign = *str == '-' ? -1 : 1;
-	if (*str == '-' || *str == '+')	str++;
+	if (*str == '-' || *str == '+')
+		str++;
 
 	//Any base to dec
 	for (; *str != '\0'; str++) {
@@ -328,6 +336,27 @@ double m_str2float(const char *str, unsigned int base)
 	}
 
 	return power > 0 ? sign * dec / power : sign * dec;
+}
+
+/* ****************************** Debug Function ****************************** */
+
+void m_showvariable(const void *val, size_t size)
+{
+	static const unsigned int bitemask[] = {0x80, 0x40, 0x20, 0x10, 0x08, 0x04, 0x02, 0x01};
+	int i;
+	unsigned char *p;
+
+	p = (unsigned char *) val;
+	for (p = p + size - 1; p >= (unsigned char *) val; p--) {
+		for (i = 0; i < 8; i++) {
+			if (*p & bitemask[i])
+				printf(M_bash_YELLOW "1");
+			else
+				printf(M_bash_yellow "0");
+		}
+		printf(" ");
+	}
+	printf(M_bash_default "\n");
 }
 
 /* ****************************** [Experimental] ****************************** */
