@@ -28,7 +28,7 @@ int		dcl_order;
 int		dcl_nest;
 enum	parse_result					{PR_ERROR = 0, PR_FINE};
 char	*type_specifier_list[] =		{"unknown type", "void", "char", "short", "int", "long", "float", "double"
-										, "signed", "unsigned"};
+										, "signed", "unsigned", /* temp add const to type specifier list */"const"};
 
 /* ****************************** Declaration ****************************** */
 int		notation_get(char *notation);
