@@ -52,7 +52,11 @@ double	m_str2float(const char *str, unsigned int base);
 #define M_printu(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%u\n" M_bash_default, val)
 #define M_prints(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%s\n" M_bash_default, val)
 #define M_printf(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%g\n" M_bash_default, val)
-#define M_showvariable(val) printf(M_bash_magenta #val M_bash_cyan " : ");m_showvariable(&val, sizeof val);
+#define M_showvariable(val) {						\
+	typeof(val) _val_ = val;						\
+	printf(M_bash_magenta #val M_bash_cyan " : ");	\
+	m_showvariable(&_val_, sizeof _val_);			\
+}
 void	m_showvariable(const void *val, size_t size);
 
 /* ****************************** [Experimental] ****************************** */
