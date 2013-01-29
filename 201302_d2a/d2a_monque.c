@@ -29,7 +29,7 @@ ieee754_float *parse_float(float val)
 }
 
 // sprintf("%{minwidth of filler}.{precision}f\n", dec);
-char *m_float2str(float dec, char *str, int base, int minwidth, char filler)
+char *m_float2str(float dec, char *str, int base, int precision, int minwidth, char filler)
 {
 	char *p;
 	unsigned char expo;
@@ -95,11 +95,9 @@ char *m_float2str(float dec, char *str, int base, int minwidth, char filler)
 	}
 
 	// Part Number
-	// TODO:
 	{
 		M_printu(expo);
 		M_printu(mant);
-		M_showvariable(mant);
 	}
 
 	// Part Sign
@@ -116,4 +114,60 @@ char *m_float2str(float dec, char *str, int base, int minwidth, char filler)
 
 	free(pfloat);
 	return str;
+}
+
+/* ****************************** Main ****************************** */
+int main(int argc, char *argv[])
+{
+	// Fval
+	float fval;
+	if (0) {
+		srand((unsigned long) argv);
+		fval = (float)(rand() % 1000 + 1) / (rand() % 1000 + 1) - (rand() % 3);
+	} else {
+		//fval = -678.478;
+		fval = -0.000000000000000000000000000000000000000000025;
+		fval = 0.5625;
+		fval = 340282347000000000000000000000000000000.0;
+	}
+
+	// Parse float to bit then Recalculate
+	char fstr[128];
+	m_float2str(fval, fstr, 10, 100, 50, ' ');
+	printf("****************************** ******************************\n");
+	printf("fstr: [%s]\n", fstr);
+	printf("fval: [%50.0f]\n", fval);
+	M_printf(m_str2float(fstr, 2));
+
+	/*
+	 * printf的说明
+	 * f:   double；形式为[-]mmm.ddd 的十进制表示，其中，d 的数目由精度确确定，默认精度为6。精度为0 时不输出小数点
+	 * e,E: double；形式为[-]m.dddddd e ±xx或[-]m.dddddd E ±xx。d 的数目由精度确定，默认精度为6。精度为0 时不输出小数点
+	 * g,G: double；当指数小于-4 或大于等于精度时，采用%e 或%E 的格式，否则采用%f 的格式。尾部的0 和小数点不打印
+	 */
+	if (0) {
+		printf("****************************** Printf ******************************\n");
+		printf("Here is a problem of float, "
+				M_bash_RED "(float) 67800.4" M_bash_default " be printf is "
+				M_bash_RED "%f" M_bash_default "\n",
+				(float) 67800.4
+		);
+		printf("In Fact " M_bash_RED "(float) 67800.4" M_bash_default " is 10000100011011000.0110011\n");
+		printf("And    " M_bash_RED "(double) 67800.4" M_bash_default " is 10000100011011000.0110011"
+				M_bash_RED "001100110011001101" M_bash_default "\n");
+		printf("Because of Precision ...\n");
+		printf("Binary: 10000100011011000.0110011 != 10000100011011000 + 0.0110011\n");
+		printf("as  %%f: %24f  != %17d + %8f\n",
+			m_str2float("10000100011011000.0110011", 2),
+			m_str2int("10000100011011000", 2),
+			m_str2float("0.0110011", 2)
+		);
+		printf("as  %%g: %19g       != %17d + %8g\n",
+			m_str2float("10000100011011000.0110011", 2),
+			m_str2int("10000100011011000", 2),
+			m_str2float("0.0110011", 2)
+		);
+	}
+
+	return 0;
 }
