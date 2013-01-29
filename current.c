@@ -8,152 +8,130 @@
 /* Reference */ // 自己动手写C语言浮点数转换字符串函数@http://www.cnblogs.com/maozefa/archive/2011/12/21/2295731.html
 /* Reference */ // 浮点数的存储格式@http://blog.csdn.net/ganxingming/article/details/1449526
 typedef struct {
-	float original;
-	unsigned char sign;
-	unsigned char bias;
-	unsigned int frac;
-} _float;
+	float			original;
+	unsigned char	negative;
+	unsigned char	exponent;
+	unsigned int	mantissa;
+} ieee754_float;
 
-_float *parse_float(float val)
+ieee754_float *parse_float(float val)
 {
-	_float *pfloat;
+	ieee754_float *pfloat;
 
-	if ((pfloat = malloc(sizeof(_float))) == NULL)
+	if ((pfloat = malloc(sizeof(ieee754_float))) == NULL)
 		return NULL;
 
 	pfloat->original = val;
-	pfloat->sign = (*((unsigned int *)&val) & 0x80000000) ? 1 : 0;
-	pfloat->bias = *((unsigned int *)&val) >> 23 & 0x000000FF;
-	pfloat->frac = *((unsigned int *)&val) & 0x007FFFFF;
+	pfloat->negative = (*((unsigned int *)&val) & 0x80000000) ? 1 : 0;
+	pfloat->exponent = *((unsigned int *)&val) >> 23 & 0x000000FF;
+	pfloat->mantissa = *((unsigned int *)&val) & 0x007FFFFF;
 
 	return pfloat;
 }
 
-float recal_float(_float *pfloat)
+// sprintf("%{minwidth of filler}.{precision}f\n", dec);
+char *m_float2str(float dec, char *str, int base, int minwidth, char filler)
 {
-	float val;
-	unsigned char bias;
+	char *p;
+	unsigned char expo, tmpexpo;
+	unsigned int mant;
+	ieee754_float *pfloat;
 
-	if (pfloat->bias == 0xFF && pfloat->frac != 0x00) {
-		*(unsigned int *)&val = pfloat->bias << 23;
-		*(unsigned int *)&val |= 1;
-		bias = 0;
-	} else if (pfloat->bias == 0xFF && pfloat->frac == 0x00) {
-		*(unsigned int *)&val = pfloat->bias << 23;
-		bias = 0;
-	} else if (pfloat->bias > 0x00 && pfloat->bias < 0xFF) {
-		val = 1.0 + (float) pfloat->frac / (1 << 23);
-		bias = pfloat->bias;
-	} else if (pfloat->bias == 0x00 && pfloat->frac != 0x00) {
-		val = 0.0 + (float) pfloat->frac / (1 << 23);
-		bias = 1;
-	} else if (pfloat->bias == 0x00 && pfloat->frac == 0x00) {
-		val = 0.0;
-		bias = 0;
+	p = str;
+
+	// Handle IEEE 754 conditions
+	pfloat = parse_float(dec);
+	expo = pfloat->exponent;
+	mant = pfloat->mantissa;
+	if (pfloat->exponent == 0xFF) {
+		if (pfloat->mantissa == 0x00) {									// inf, Infinity
+			*(p++) = 'f';
+			*(p++) = 'n';
+			*(p++) = 'i';
+		} else {														// NaN, Not A Number
+			*(p++) = 'N';
+			*(p++) = 'a';
+			*(p++) = 'N';
+		}
+	} else if (pfloat->exponent == 0x00) {
+		if (pfloat->mantissa == 0x00) {									// 0
+			*(p++) = '0';
+		} else {														// subnormal numbers have an implicit leading significand bit of 0
+			expo = 1;
+		}
+	} else if (pfloat->exponent > 0x00 && pfloat->exponent < 0xFF) {	// normal numbers have an implicit leading significand bit of 1
+		mant = pfloat->mantissa | 0x800000;
 	}
 
-	if (bias > 127) {
-		for (bias = bias - 127; bias > 30; bias -= 30)
-			val *= 1 << 30;
-		val *= 1 << bias;
-	} else if (bias < 127) {
-		for (bias = 127 - bias; bias > 30; bias -= 30)
-			val /= 1 << 30;
-		val /= 1 << bias;
+	// Re-Calculate to check
+	{
+		float dec_recal;
+
+		if (expo == 0xFF) {
+			*((unsigned int *) &dec_recal) = (0xFF << 23) | mant;
+		} else {
+			dec_recal = (float) mant / (1 << 23);
+			if (expo >= 127) {
+				for (tmpexpo = expo - 127; tmpexpo > 30; tmpexpo -= 30)
+					dec_recal *= 1 << 30;
+				dec_recal *= 1 << tmpexpo;
+			} else {
+				for (tmpexpo = 127 - expo; tmpexpo > 30; tmpexpo -= 30)
+					dec_recal /= 1 << 30;
+				dec_recal /= 1 << tmpexpo;
+			}
+		}
+
+		if (pfloat->negative)
+			dec_recal = -dec_recal;	
+
+		if (dec_recal == dec)
+			printf(M_bash_GREEN "%.10g == %.10g\n" M_bash_default, dec_recal, dec);
+		else {
+			printf(M_bash_RED "%.10g != %.10g\n" M_bash_default, dec_recal, dec);
+			M_showvariable(dec);
+			M_showvariable(dec_recal);
+		}
 	}
 
-	if (pfloat->sign)
-		val = -val;	
+	// Part Number
+	M_printu(expo);
+	M_printu(mant);
 
-	return val;
-}
+	// Part Sign
+	if (pfloat->negative)
+		*(p++) = '-';
 
-void test_float(float val)
-{
-	float fval;
-	_float *pfloat;
-
-	pfloat = parse_float(val);
-	
-	M_showvariable(pfloat->original);
-	M_showvariable(pfloat->sign);
-	M_showvariable(pfloat->bias);
-	M_showvariable(pfloat->frac);
-	
-	fval = recal_float(pfloat);
-	if (fval == pfloat->original)
-		printf(M_bash_GREEN "%g == %g\n" M_bash_default, fval, pfloat->original);
-	else
-		printf(M_bash_RED "%g != %g\n" M_bash_default, fval, pfloat->original);
+	// Fill to min-width
+	while (p - str < minwidth)
+		*(p++) = filler;
+	*p = '\0';
 
 	free(pfloat);
-}
-
-char *m_float2str(double dec, char *str/*, int base, int minwidth, char filler*/)
-{
-	char bias;
-	unsigned int frac;
-	_float *pfloat;
-
-	pfloat = parse_float((float)dec);
-	bias = (char) pfloat->bias - 127 - 23;
-	frac = pfloat->frac | 0x00800000;
-
-	M_showvariable(frac);
-	m_int2str((int)frac, str, 2, 0, ' ');
-	while (bias > 0) {
-		m_strcat(str, "0");
-		bias--;
-	}
-	while (m_strlen(str) + bias < 0)
-		m_strinsert(str, "0", 0);
-	m_strinsert(str, ".", m_strlen(str) + bias);
-	if (*str == '.')
-		m_strinsert(str, "0", 0);
-	if (pfloat->sign)
-		m_strinsert(str, "-", 0);
-
-	// 提取整数部分
-	{
-		int part_integer;
-		
-		bias = (char) pfloat->bias - 127 - 23;
-		M_printd(frac);
-		M_printd(bias);
-		if (bias > 0)
-			part_integer = frac << bias;
-		else if (bias > -24)
-			part_integer = frac >> -bias;
-		else
-			part_integer = 0;
-		M_printd(part_integer);
-	}
-
-	return str;
+	return m_strrev(str);
 }
 
 /* ****************************** Main ****************************** */
 int main(int argc, char *argv[])
 {
+	// Fval
 	float fval;
-
-	srand((unsigned int) argv);
-	fval = (float)(rand() % 1000 + 1) / (rand() % 1000 + 1) - (rand() % 3);
-
-	// Parse float to bit then Recalculate
-	if (0) {		
-		test_float(fval);
+	if (0) {
+		srand((unsigned long) argv);
+		fval = (float)(rand() % 1000 + 1) / (rand() % 1000 + 1) - (rand() % 3);
+	} else {
+		//fval = -678.478;
+		//fval = -0.00000000000000000000000000000000000000000000078;
+		fval = 340282347000000000000000000000000000000.0;
 	}
 
-	//fval = -678.478;
-	//fval = 1024000000.0;
-	fval = 0.314;
-	char str[128];
-
-	m_float2str(fval, str);
-	printf("**************************************************\n%s\n", str);
-	M_printf(fval);
-	M_printf(m_str2float(str, 2));
+	// Parse float to bit then Recalculate
+	char fstr[128];
+	m_float2str(fval, fstr, 10, 50, ' ');
+	printf("****************************** ******************************\n");
+	printf("fstr: [%s]\n", fstr);
+	printf("fval: [%50.0f]\n", fval);
+	M_printf(m_str2float(fstr, 2));
 
 	return 0;
 }
