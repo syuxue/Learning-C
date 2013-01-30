@@ -278,10 +278,10 @@ char *m_int2str(int dec, char *str, int base, int minwidth, char filler)
 		exit(EXIT_FAILURE);
 	}
 
-	//Sign
+	// Sign
 	sign = dec < 0 ? -1 : 1;
 
-	//Dec to any base
+	// Dec to any base
 	p = str;
 	do {
 		*(p++) = basemap[(dec % base) * sign];
@@ -302,7 +302,7 @@ int m_str2int(const char *str, unsigned int base)
 
 double m_str2float(const char *str, unsigned int base)
 {
-	int sign, c;
+	int sign, c, exponent;
 	double dec, power;
 
 	if (base < 2 || base > 36) {
@@ -310,22 +310,22 @@ double m_str2float(const char *str, unsigned int base)
 		exit(EXIT_FAILURE);
 	}
 
-	power = dec = 0;
-	//Sign
+	// Sign
 	sign = *str == '-' ? -1 : 1;
 	if (*str == '-' || *str == '+')
 		str++;
 
-	//Any base to dec
+	// Any base to dec
+	power = dec = 0;
 	for (; *str != '\0'; str++) {
 		if (power == 0 && *str == '.') {
 			power = 1;
 			continue;
 		} else if (isdigit(*str)) {
 			c = *str - '0';
-		} else if (islower(*str)) {
+		} else if (base > 10 && islower(*str)) {
 			c = *str - 'a' + 10;
-		} else if (isupper(*str)) {
+		} else if (base > 10 && isupper(*str)) {
 			c = *str - 'A' + 10;
 		} else {
 			break;
@@ -333,6 +333,17 @@ double m_str2float(const char *str, unsigned int base)
 		if (power > 0)
 			power *= base;
 		dec = (dec * base) + c;
+	}
+
+	// Exponent
+	if (base <= 10 && (*str == 'e' || *str == 'E')) {
+		exponent = m_str2int(str + 1, 10);
+		if (exponent > 0)
+			while (exponent-- > 0)
+				dec *= base;
+		else
+			while (exponent++ < 0)
+				dec /= base;
 	}
 
 	return power > 0 ? sign * dec / power : sign * dec;
