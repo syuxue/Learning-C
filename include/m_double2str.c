@@ -1,9 +1,9 @@
 /*
-TODO
-输出无限精度
+TODO:输出任意精度
 	sprintf
 	取余入栈，循环处理
 	将2进制分段处理
+	用多个int保存mantissa
 */
 #include <string.h>
 #include <ieee754.h>
