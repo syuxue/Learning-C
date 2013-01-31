@@ -335,6 +335,9 @@ double m_str2double(const char *str, unsigned int base)
 		dec = (dec * base) + c;
 	}
 
+	if (power > 0)
+		dec /= power;
+
 	// Exponent
 	if (base <= 10 && (*str == 'e' || *str == 'E')) {
 		exponent = m_str2int(str + 1, 10);
@@ -346,7 +349,7 @@ double m_str2double(const char *str, unsigned int base)
 				dec /= base;
 	}
 
-	return power > 0 ? sign * dec / power : sign * dec;
+	return sign * dec;
 }
 
 /* ****************************** Debug Function ****************************** */
