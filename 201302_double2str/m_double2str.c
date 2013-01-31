@@ -1,38 +1,50 @@
 /*
 TODO:输出任意精度
-	sprintf
-	取余入栈，循环处理
+	sprintf, printf
+	//取余入栈，循环处理
 	将2进制分段处理
 	用多个int保存mantissa
 */
 #include <string.h>
 #include <ieee754.h>
-#include <limits.h>
 #include "../include/m_function.h"
 
 #define IEEE754_DOUBLE_EMAX			IEEE754_DOUBLE_BIAS
 #define IEEE754_DOUBLE_EMIN			1 - IEEE754_DOUBLE_EMAX
 #define IEEE754_DOUBLE_MANT_DIG		53
-#define UINT64_MAX					ULONG_MAX
 
 #if __WORDSIZE == 64
-typedef unsigned long UINT64;
+#define MANT_MAX					18446744073709551615UL
+typedef unsigned long MANT;
 #else
-typedef unsigned long long UINT64;
+#define MANT_MAX					18446744073709551615ULL
+typedef unsigned long long MANT;
 #endif
 
-static const UINT64 tab_exponent_base[] = {
-	0x0000000000000001, 0x000000000000000A, 0x0000000000000064, 0x00000000000003E8
-	, 0x0000000000002710, 0x00000000000186A0, 0x00000000000F4240, 0x0000000000989680
-	, 0x0000000005F5E100, 0x000000003B9ACA00
-#if __WORDSIZE == 64
-	, 0x00000002540BE400, 0x000000174876E800, 0x000000E8D4A51000, 0x000009184E72A000
-	, 0x00005AF3107A4000, 0x00038D7EA4C68000, 0x002386F26FC10000, 0x016345785D8A0000
-	, 0x0DE0B6B3A7640000, 0x8AC7230489E80000
-#endif
+static const MANT tab_exponent_base[] = {
+	0x0000000000000001, /* 10 ^ 0 */
+	0x000000000000000A, /* 10 ^ 1 */
+	0x0000000000000064, /* 10 ^ 2 */
+	0x00000000000003E8, /* 10 ^ 3 */
+	0x0000000000002710, /* 10 ^ 4 */
+	0x00000000000186A0, /* 10 ^ 5 */
+	0x00000000000F4240, /* 10 ^ 6 */
+	0x0000000000989680, /* 10 ^ 7 */
+	0x0000000005F5E100, /* 10 ^ 8 */
+	0x000000003B9ACA00, /* 10 ^ 9 */
+	0x00000002540BE400ULL, /* 10 ^ 10 */
+	0x000000174876E800ULL, /* 10 ^ 11 */
+	0x000000E8D4A51000ULL, /* 10 ^ 12 */
+	0x000009184E72A000ULL, /* 10 ^ 13 */
+	0x00005AF3107A4000ULL, /* 10 ^ 14 */
+	0x00038D7EA4C68000ULL, /* 10 ^ 15 */
+	0x002386F26FC10000ULL, /* 10 ^ 16 */
+	0x016345785D8A0000ULL, /* 10 ^ 17 */
+	0x0DE0B6B3A7640000ULL, /* 10 ^ 18 */
+	0x8AC7230489E80000ULL  /* 10 ^ 19 */
 };
 
-static const UINT64 tab_exponent_mant[] = {
+static const MANT tab_exponent_mant[] = {
 	0x0000000000000000, /* 0 */
 	0x0000000000000001, /* 1 << 0 */
 	0x0000000000000002, /* 1 << 1 */
@@ -66,42 +78,42 @@ static const UINT64 tab_exponent_mant[] = {
 	0x0000000020000000, /* 1 << 29 */
 	0x0000000040000000, /* 1 << 30 */
 	0x0000000080000000, /* 1 << 31 */
-	0x0000000100000000, /* 1 << 32 */
-	0x0000000200000000, /* 1 << 33 */
-	0x0000000400000000, /* 1 << 34 */
-	0x0000000800000000, /* 1 << 35 */
-	0x0000001000000000, /* 1 << 36 */
-	0x0000002000000000, /* 1 << 37 */
-	0x0000004000000000, /* 1 << 38 */
-	0x0000008000000000, /* 1 << 39 */
-	0x0000010000000000, /* 1 << 40 */
-	0x0000020000000000, /* 1 << 41 */
-	0x0000040000000000, /* 1 << 42 */
-	0x0000080000000000, /* 1 << 43 */
-	0x0000100000000000, /* 1 << 44 */
-	0x0000200000000000, /* 1 << 45 */
-	0x0000400000000000, /* 1 << 46 */
-	0x0000800000000000, /* 1 << 47 */
-	0x0001000000000000, /* 1 << 48 */
-	0x0002000000000000, /* 1 << 49 */
-	0x0004000000000000, /* 1 << 50 */
-	0x0008000000000000, /* 1 << 51 */
-	0x0010000000000000  /* 1 << 52 */
+	0x0000000100000000ULL, /* 1 << 32 */
+	0x0000000200000000ULL, /* 1 << 33 */
+	0x0000000400000000ULL, /* 1 << 34 */
+	0x0000000800000000ULL, /* 1 << 35 */
+	0x0000001000000000ULL, /* 1 << 36 */
+	0x0000002000000000ULL, /* 1 << 37 */
+	0x0000004000000000ULL, /* 1 << 38 */
+	0x0000008000000000ULL, /* 1 << 39 */
+	0x0000010000000000ULL, /* 1 << 40 */
+	0x0000020000000000ULL, /* 1 << 41 */
+	0x0000040000000000ULL, /* 1 << 42 */
+	0x0000080000000000ULL, /* 1 << 43 */
+	0x0000100000000000ULL, /* 1 << 44 */
+	0x0000200000000000ULL, /* 1 << 45 */
+	0x0000400000000000ULL, /* 1 << 46 */
+	0x0000800000000000ULL, /* 1 << 47 */
+	0x0001000000000000ULL, /* 1 << 48 */
+	0x0002000000000000ULL, /* 1 << 49 */
+	0x0004000000000000ULL, /* 1 << 50 */
+	0x0008000000000000ULL, /* 1 << 51 */
+	0x0010000000000000ULL  /* 1 << 52 */
 };
 
 char *m_double2str(const double dec, char *str)
 {
 	const int base = 10;
-	
+
 	char *p;
 	union ieee754_double *pdouble;
 	int exponent, exponent_base, exponent_base_mant, exponent_base_sign;
-	UINT64 mantissa;
+	MANT mantissa;
 
 	// 将浮点数按照IEEE 754标准提取出exponent, mantissa部分
 	pdouble = (union ieee754_double *) &dec;
 	exponent = pdouble->ieee.exponent - IEEE754_DOUBLE_BIAS;
-	mantissa = (UINT64) pdouble->ieee.mantissa0 << 32 | pdouble->ieee.mantissa1;
+	mantissa = (MANT) pdouble->ieee.mantissa0 << 32 | pdouble->ieee.mantissa1;
 
 	// 处理IEEE 754中的特殊情况(inf, nan, 0, normal, subnormal)
 	if (exponent > IEEE754_DOUBLE_EMAX) {
@@ -122,7 +134,7 @@ char *m_double2str(const double dec, char *str)
 	exponent_base = 0;
 	if (exponent - IEEE754_DOUBLE_MANT_DIG + 1 > 0) {
 		for (; exponent - IEEE754_DOUBLE_MANT_DIG + 1 > 0; --exponent) {
-			if (mantissa > UINT64_MAX / 2) {
+			if (mantissa > MANT_MAX / 2) {
 				mantissa /= base;
 				++exponent_base;
 			}
@@ -130,7 +142,7 @@ char *m_double2str(const double dec, char *str)
 		}
 	} else {
 		for (; exponent - IEEE754_DOUBLE_MANT_DIG + 1 < 0; ++exponent) {
-			if ((mantissa & 1) && mantissa < UINT64_MAX / 10) {
+			if (mantissa & 1 && mantissa < MANT_MAX / 10) { // mantissa & 1, 仅在无法被2整除时升位
 				mantissa *= base;
 				--exponent_base;
 			}
