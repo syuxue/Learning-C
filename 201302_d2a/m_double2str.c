@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <string.h>
 #include <ieee754.h>
 #include <float.h>
@@ -18,7 +17,7 @@ static const unsigned long tab_exponent_base[] = {
 	0x002386f26fc10000, 0x016345785d8a0000, 0x0de0b6b3a7640000, 0x8ac7230489e80000
 };
 
-char *m_double2str(const double dec, char *str, int precision)
+char *m_double2str(const double dec, char *str)
 {
 	const int base = 10;
 	

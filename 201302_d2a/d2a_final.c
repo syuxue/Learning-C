@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include "../include/m_function.h"
-char *m_double2str(const double dec, char *str, int precision);
+char *m_double2str(const double dec, char *str);
 
 
 // Main
@@ -15,7 +15,7 @@ int main(void)
 	dval = 5.321005654001230e+100;
 	dval = 2123;
 	dval = 2e1;
-	m_double2str(dval, dstr, 10);
+	m_double2str(dval, dstr);
 	printf("****************************************************\n");
 	printf("[%50s]\n", dstr);
 	printf("[%50g]\n", dval);
