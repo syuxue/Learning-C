@@ -45,6 +45,7 @@ int		m_strrpos(const char *str, const char *needle);
 /* ****************************** Math Function ****************************** */
 #define m_str2float(str, base) m_str2double(str, base)
 char	*m_int2str(int dec, char *str, int base, int minwidth, char filler);
+char	*m_double2str(const double dec, char *str);
 int		m_str2int(const char *str, unsigned int base);
 double	m_str2double(const char *str, unsigned int base);
 

@@ -1,17 +1,23 @@
 #include <stdio.h>
-#include <stdlib.h>
 #include "include/m_function.h"
 
+// Main
 int main(void)
 {
-	unsigned long ul, last;
+	char dstr[1024];
+	double dval;
 
-	for (last = 0, ul = 1; ul > last; ul *= 10) {
-		printf("%016lx\n", ul);
-		last = ul;
-	}
-
-	printf("%lu\n", 0x8ac7230489e80000);
+	dval = 2.2250738585072014e-308;
+	dval = 2.2250738585072014e-323;
+	dval = -2.2200000000500000e-322;
+	dval = 5.321005654001230e+100;
+	dval = 2123;
+	dval = 2e1;
+	m_double2str(dval, dstr);
+	printf("****************************************************\n");
+	printf("[%50s]\n", dstr);
+	printf("[%50g]\n", dval);
+	printf("[%50g]\n", m_str2double(dstr, 10));
 
 	return 0;
 }
