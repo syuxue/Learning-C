@@ -1,28 +1,17 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "include/m_function.h"
 
-/* ****************************** Main ****************************** */
-int main(int argc, char *argv[])
+int main(void)
 {
-	// Fval
-	float fval;
-	if (0) {
-		srand((unsigned long) argv);
-		fval = (float)(rand() % 1000 + 1) / (rand() % 1000 + 1) - (rand() % 3);
-	} else {
-		//fval = -678.478;
-		fval = -0.000000000000000000000000000000000000000000025;
-		fval = 0.5625;
-		fval = 340282347000000000000000000000000000000.0;
+	unsigned long ul, last;
+
+	for (last = 0, ul = 1; ul > last; ul *= 10) {
+		printf("%016lx\n", ul);
+		last = ul;
 	}
 
-	// Parse float to bit then Recalculate
-	char fstr[128];
-	m_float2str(fval, fstr, 10, 50, ' ');
-	printf("****************************** ******************************\n");
-	printf("fstr: [%s]\n", fstr);
-	printf("fval: [%50.0f]\n", fval);
-	M_printf(m_str2float(fstr, 2));
+	printf("%lu\n", 0x8ac7230489e80000);
 
 	return 0;
 }

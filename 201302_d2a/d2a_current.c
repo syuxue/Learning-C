@@ -164,6 +164,7 @@ void FloatResolve(double *pvalue, int precision, int decimals, FloatRec *rec)
     }
 
 // Why
+//#define    DECIMAL_EXP(exponent)    ((((exponent - F_CONEXPONENT) * 0x4d10) >> 16) + 1)
 /*M_printd((rec->exponent - 0x03ff) * 0x4d10);
 M_printd( 
     (
