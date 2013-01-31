@@ -43,9 +43,10 @@ int		m_strpos(const char *str, const char *needle);
 int		m_strrpos(const char *str, const char *needle);
 
 /* ****************************** Math Function ****************************** */
+#define m_str2float(str, base) m_str2double(str, base)
 char	*m_int2str(int dec, char *str, int base, int minwidth, char filler);
 int		m_str2int(const char *str, unsigned int base);
-double	m_str2float(const char *str, unsigned int base);
+double	m_str2double(const char *str, unsigned int base);
 
 /* ****************************** Debug Function ****************************** */
 #define M_printd(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%d\n" M_bash_default, val)

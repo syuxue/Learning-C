@@ -297,10 +297,10 @@ char *m_int2str(int dec, char *str, int base, int minwidth, char filler)
 
 int m_str2int(const char *str, unsigned int base)
 {
-	return (int) m_str2float(str, base);
+	return (int) m_str2double(str, base);
 }
 
-double m_str2float(const char *str, unsigned int base)
+double m_str2double(const char *str, unsigned int base)
 {
 	int sign, c, exponent;
 	double dec, power;
