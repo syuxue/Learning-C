@@ -81,7 +81,7 @@ void gift_random_text(char *text, int len)
 {
 	char *p;
 
-	srand((unsigned int)text);
+	srand((unsigned long) text);
 	len = (unsigned int)rand() % (len / 2) + len / 2;
 	p = text;
 	*p++ = (unsigned int)rand() % 26 + 65;
@@ -92,7 +92,7 @@ void gift_random_text(char *text, int len)
 
 void gift_random(struct gift *gift)
 {
-	srand((unsigned int)gift);
+	srand((unsigned long) gift);
 	gift_random_text(gift->name, GIFT_NAME_LENGTH);
 	gift_random_text(gift->origin, GIFT_ORIGIN_LENGTH);
 	gift->price = (unsigned int)rand() % 1000 + 1;
