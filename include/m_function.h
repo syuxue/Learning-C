@@ -50,14 +50,16 @@ int		m_str2int(const char *str, unsigned int base);
 double	m_str2double(const char *str, unsigned int base);
 
 /* ****************************** Debug Function ****************************** */
-#define M_printd(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%d\n" M_bash_default, val)
-#define M_printu(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%u\n" M_bash_default, val)
-#define M_prints(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%s\n" M_bash_default, val)
-#define M_printf(val)		printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow "%g\n" M_bash_default, val)
+#define M_print(format, val)	printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow format "\n" M_bash_default, val)
+#define M_printd(val)		M_print("%d", val)
+#define M_printu(val)		M_print("%u", val)
+#define M_prints(val)		M_print("%s", val)
+#define M_printf(val)		M_print("%g", val)
 #define M_showvariable(val) {						\
 	typeof(val) _val_ = val;						\
 	printf(M_bash_magenta #val M_bash_cyan " : ");	\
 	m_showvariable(&_val_, sizeof _val_);			\
+	printf(M_bash_default "\n");					\
 }
 void	m_showvariable(const void *val, size_t size);
 
