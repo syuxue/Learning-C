@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include <ctype.h>
-#include "m_function.h"
+#include "../include/m_function.h"
 
 /* ****************************** Definition & Declaration ****************************** */
 #define WORD_LENGTH		4096
@@ -139,19 +139,20 @@ void word_print(struct tword *p)
 
 void group_print(struct tgroup *p)
 {
-	static char format[16] = "";
 	if (p == NULL)
 		return;
 	
-	// Format
+	/* Format
+	原来用%-*s这样的格式就可以带长度的参数了
+	static char format[16] = "";
 	if (*format == '\0') {
 		strcpy(format, "%");
 		m_int2str(op_initiallen, format + 1, 10, 0, '\0');
 		strcat(format, "s :\n");
-	}
+	}*/
 
 	group_print(p->left);
-	printf(format, p->prefix);
+	printf("%-*s:\n", op_initiallen, p->prefix);
 	word_print(p->wordroot);
 	group_print(p->right);
 }
