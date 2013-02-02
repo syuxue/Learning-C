@@ -14,7 +14,7 @@ void m_helloworld(void)
 
 void m_bash_clear(void)
 {
-	printf("\e[2J");
+	printf("\ecl");
 }
 
 void m_bash_pause(const char *message)

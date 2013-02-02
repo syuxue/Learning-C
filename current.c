@@ -14,6 +14,7 @@ int main(void)
 	dval = 2.2250738585072014e-323;
 	dval = 2.2250738585072014e+307;
 
+	m_bash_clear();
 	M_showvariable(dval);
 	m_double2str(dval, dstr);
 	printf("****************************************************\n");
