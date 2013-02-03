@@ -43,12 +43,15 @@ void m_bash_pause(const char *message)
 
 int m_getline(char *str, int maxsize)
 {
-	char c, *p;
+	int c;
+	char *p;
 
-	for (p = str; p - str < maxsize - 1 && (c = getchar()) != EOF && c != '\n'; p++)
-		*p = c;
-	if (c == '\n')
-		*p++ = c;
+	p = str;
+	while (maxsize-- > 0 && (c = getchar()) != EOF) {
+		*(p++) = c;
+		if (c == '\n')
+			break;
+	}
 	*p = '\0';
 
 	return p - str;
