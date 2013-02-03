@@ -1,5 +1,8 @@
 #include <stdio.h>
+#include <stdarg.h>
+#include <ctype.h>
 #include "include/m_function.h"
+
 
 // Main
 int main(int argc, char *argv[])

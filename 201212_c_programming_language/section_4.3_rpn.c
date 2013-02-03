@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <math.h>
-#include "m_function.h"
+#include "../include/m_function.h"
 #include "section_4.3_rpn.h"
 
 /* ****************************** Stack ****************************** */
@@ -55,7 +55,7 @@ int rpn_getop(char *notation, char *operator)
 
 void rpn_operate(char operator[])
 {
-	double tmp,tmp2,m_str2float();
+	double tmp,tmp2;
 
 	if (
 		isdigit(operator[0])
