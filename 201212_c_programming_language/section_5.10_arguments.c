@@ -1,5 +1,5 @@
 #include <stdio.h>
-#include "m_function.h"
+#include "include/m_function.h"
 void echo(int argc, char *argv[]);
 void grep(char *pattern, int op_except, int op_number);
 
@@ -14,7 +14,7 @@ void grep(char *pattern, int op_except, int op_number)
 {
 	int num;
 	char line[4096];
-	
+
 	num = 0;
 	while (m_getline(line, 4096) > 0) {
 		num++;
@@ -23,7 +23,7 @@ void grep(char *pattern, int op_except, int op_number)
 			|| (!op_except && m_strpos(line, pattern) > -1)
 		) {
 			if (op_number)
-				printf("%d:", num);
+				printf(M_bash_green "%d" M_bash_cyan ":" M_bash_default, num);
 			printf("%s", line);
 		}
 	}
@@ -56,7 +56,9 @@ int main(int argc, char *argv[])
 			return 1;
 		}
 	}
-	grep(pattern, op_except, op_number);
+
+	if (pattern != NULL)
+		grep(pattern, op_except, op_number);
 
 	return 0;
 }
