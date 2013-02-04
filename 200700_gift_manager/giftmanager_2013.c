@@ -6,10 +6,11 @@
 /* ****************************** Definition ****************************** */
 
 #define TERMINAL_ROW 40
-#define GIFT_NUM 100
+#define GIFT_NUM 30
 #define GIFT_NAME_LENGTH 10
 #define GIFT_ORIGIN_LENGTH 4
 #define GIFT_ID_START 10001
+#define ROLL(max) rand() % max
 
 /* ****************************** Struct ****************************** */
 
@@ -81,12 +82,11 @@ void gift_random_text(char *text, int len)
 {
 	char *p;
 
-	srand((unsigned long) text);
-	len = (unsigned int)rand() % (len / 2) + len / 2;
+	len = ROLL(len / 2) + len / 2;
 	p = text;
-	*p++ = (unsigned int)rand() % 26 + 65;
+	*p++ = ROLL(26) + 65;
 	while (p < text + len)
-		*p++ = (unsigned int)rand() % 26 + 97;
+		*p++ = ROLL(26) + 97;
 	*p = '\0';
 }
 
@@ -95,13 +95,13 @@ void gift_random(struct gift *gift)
 	srand((unsigned long) gift);
 	gift_random_text(gift->name, GIFT_NAME_LENGTH);
 	gift_random_text(gift->origin, GIFT_ORIGIN_LENGTH);
-	gift->price = (unsigned int)rand() % 1000 + 1;
-	gift->cost = (unsigned int)rand() % gift->price + 1;
-	gift->kind = (unsigned int)rand() % 9;
-	gift->qtt = (unsigned int)rand() % 100;
-	gift->date.year = (unsigned int)rand() % 20 + 1990;
-	gift->date.month = (unsigned int)rand() % 12 + 1;
-	gift->date.day = (unsigned int)rand() % 31 + 1;
+	gift->price = ROLL(1000) + 1;
+	gift->cost = ROLL(gift->price) + 1;
+	gift->kind = ROLL(9);
+	gift->qtt = ROLL(100);
+	gift->date.year = ROLL(20) + 1990;
+	gift->date.month = ROLL(12) + 1;
+	gift->date.day = ROLL(31) + 1;
 }
 
 struct gift *gift_init(unsigned num, int do_random)
