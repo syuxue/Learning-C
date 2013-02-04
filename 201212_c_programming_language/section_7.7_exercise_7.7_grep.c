@@ -19,9 +19,11 @@ void grep(char *pattern, char *filename)
 		fprintf(stderr, "error: can not found %s\n", filename);
 		exit(EXIT_FAILURE);
 	}
-	for (num = 1; (len = m_getline(line, LINE_SIZE, fp)) > 0; num++) {
+
+	for (num = 1; fgets(line, LINE_SIZE, fp); num++) {
 		pos = m_strpos(line, pattern);
 		if ((!op_invert_match && pos > -1) || (op_invert_match && pos == -1)) {
+			len = strlen(line);
 			if (line[len - 1] == '\n')
 				line[len - 1] = '\0';
 			if (op_with_filename)
