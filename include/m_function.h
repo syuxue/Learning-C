@@ -1,3 +1,5 @@
+#include <stdio.h>
+
 /* ****************************** Learn Function ****************************** */
 void	m_helloworld(void);
 
@@ -21,7 +23,7 @@ void	m_bash_clear(void);
 void	m_bash_pause(const char *message);
 
 /* ****************************** Input/Output Function ****************************** */
-int		m_getline(char *str, int maxsize);
+int		m_getline(char *str, int maxsize, FILE *fp);
 
 /* ****************************** String Function ****************************** */
 char	*m_strcpy(char *to, const char *from);

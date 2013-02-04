@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include "m_function.h"
@@ -41,13 +40,13 @@ void m_bash_pause(const char *message)
 
 /* ****************************** Input/Output Function ****************************** */
 
-int m_getline(char *str, int maxsize)
+int m_getline(char *str, int maxsize, FILE *fp)
 {
 	int c;
 	char *p;
 
 	p = str;
-	while (maxsize-- > 0 && (c = getchar()) != EOF) {
+	while (maxsize-- > 0 && (c = getc(fp)) != EOF) {
 		*(p++) = c;
 		if (c == '\n')
 			break;
