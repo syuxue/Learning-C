@@ -52,7 +52,7 @@ int		m_str2int(const char *str, unsigned int base);
 double	m_str2double(const char *str, unsigned int base);
 
 /* ****************************** Debug Function ****************************** */
-#define M_print(format, val)	printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow format "\n" M_bash_default, val)
+#define M_print(format, val)	printf(M_bash_magenta #val M_bash_cyan " = " M_bash_yellow format M_bash_default "\n", val)
 #define M_printd(val)		M_print("%d", val)
 #define M_printu(val)		M_print("%u", val)
 #define M_prints(val)		M_print("%s", val)
