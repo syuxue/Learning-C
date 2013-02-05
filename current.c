@@ -1,6 +1,8 @@
 #include <stdlib.h>
-#include <string.h>
-#include "include/m_function.h"
+#include <fcntl.h>
+#include <unistd.h>
+#define INTERVAL 250000
+#define BUFSIZ 4096
 
 int main(int argc, char *argv[])
 {

@@ -21,3 +21,6 @@
 
 "section_8.3_open_creat_close_unlink.c"
 	unix:cp
+
+"section_8.4_tailf.c"
+	unix:tail -f
