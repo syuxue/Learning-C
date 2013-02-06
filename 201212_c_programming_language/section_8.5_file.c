@@ -80,10 +80,28 @@ int fflush(FILE *fp)
 	if ((fp->flag & (_WRITE | _UNBUF)) == _WRITE) {
 		_flushbuf(EOF, fp);
 	} else if ((fp->flag & (_READ | _UNBUF)) == _READ) {
-		_fillbuf(fp);
+		fp->ptr = fp->base;
+		fp->cnt = 0;
 	}
 
-	return NULL;
+	return 0;
+}
+
+int fseek(FILE *fp, long offset, int origin)
+{
+	// Check flag
+	if (fp->flag & (_EOF | _ERR))
+		return EOF;
+
+	if (!(fp->flag & _UNBUF)) {
+		if (fp->flag & _READ && origin == SEEK_CUR) // getc时，由于先读入buf，所以fd的位置已经是CUR + BUFSIZ了
+			offset -= fp->cnt;
+		fflush(fp);
+	}
+	if (lseek(fp->fd, offset, origin) == EOF)
+		return EOF;
+
+	return 0;
 }
 
 int _fillbuf(FILE *fp)
@@ -143,5 +161,5 @@ int _flushbuf(int c, FILE *fp)
 		}
 	}
 
-	return c;
+	return (unsigned char) c;
 }

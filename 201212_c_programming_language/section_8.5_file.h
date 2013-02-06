@@ -31,6 +31,7 @@ enum _flags {
 FILE *fopen(char *name, char *mode);
 int fclose(FILE *);
 int fflush(FILE *);
+int fseek(FILE *, long, int);
 int _fillbuf(FILE *);
 int _flushbuf(int, FILE *);
 
