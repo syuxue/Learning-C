@@ -21,6 +21,7 @@ static Header *morecore(unsigned int nu)
 	
 	hp = (Header *) cp;
 	hp->s.size = nu;
+	hp->s.magic = MAGIC;
 	
 	m_free((void *) (hp + 1));
 	return freep;
@@ -31,6 +32,10 @@ void m_free(void *ap)
 	Header *hp, *p;
 
 	hp = (Header *) ap - 1;		// pointer to this header
+
+	if (hp->s.magic != MAGIC)
+		return;
+
 	for (p = freep; hp >= p->s.ptr || hp <= p; p = p->s.ptr)
 		if (p >= p->s.ptr && (hp > p || hp < p->s.ptr))
 			break; /* freed block at start or end of arena */
@@ -55,6 +60,9 @@ void *m_malloc(unsigned int nbytes)
 	Header *p, *prevp;
 	unsigned int nunits;
 
+	if (nbytes <= 0)
+		return NULL;
+
 	// ceil(nbytes / size) + 1
 	nunits = (nbytes + sizeof(Header) - 1) / sizeof(Header) + 1;
 
@@ -73,6 +81,7 @@ void *m_malloc(unsigned int nbytes)
 				p->s.size -= nunits;
 				p += p->s.size;
 				p->s.size = nunits;
+				p->s.magic = MAGIC;
 			}
 			freep = prevp;
 			return (void *)(p + 1);
@@ -81,6 +90,19 @@ void *m_malloc(unsigned int nbytes)
 			if ((p = morecore(nunits)) == NULL)
 				return NULL; /* none left */
 	}
+}
+
+void *m_calloc(unsigned int n, unsigned int size)
+{
+	char *p, *p2;
+
+	if ((p = m_malloc(size * n)) == NULL)
+		return NULL;
+
+	for (p2 = p + size * n - 1; p2 >= p; p2--)
+		*p2 = 0;
+
+	return p;
 }
 
 /* ****************************** debug ****************************** */

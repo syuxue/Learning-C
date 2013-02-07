@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
 
 	// Alloc
 	for (j = 0; j < 10; j++)
-		p[i++] = m_malloc(sizeof(Header) * 30);
+		p[i++] = m_calloc(30, sizeof(Header));
 	showalloc();
 
 	m_free(p[1]);
@@ -27,11 +27,11 @@ int main(int argc, char *argv[])
 	showalloc();
 
 	for (j = 0; j < 10; j++)
-		p[i++] = m_malloc(sizeof(Header) * 10);
+		p[i++] = m_calloc(10, sizeof(Header));
 	showalloc();
 
 	for (j = 0; j < 400; j++)
-		p[i++] = m_malloc(sizeof(Header) * 1);
+		p[i++] = m_malloc(sizeof(Header));
 	showalloc();
 
 	// Free
