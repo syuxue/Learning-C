@@ -372,6 +372,7 @@ void m_showvariable(const void *val, size_t size)
 		}
 		printf(" ");
 	}
+	printf(M_bash_default);
 }
 
 /* ****************************** [Experimental] ****************************** */
