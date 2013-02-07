@@ -2,7 +2,7 @@
 TODO:输出任意精度
 	sprintf, printf
 	//取余入栈，循环处理
-	将2进制分段处理
+	//将2进制分段处理
 	用多个int保存mantissa
 */
 #include <string.h>
