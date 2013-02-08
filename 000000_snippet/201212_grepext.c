@@ -1,19 +1,35 @@
 #include <stdio.h>
-#include "m_function.h"
-#define EXTSIZE		20
-#define LINESIZE	4096
+#include <string.h>
+#define LINE_SIZE	4096
+#define EXT_LENGTH		20
 
 /* ****************************** Main ****************************** */
 int main(int argc, char *argv[])
 {
-	int i;
-	char line[LINESIZE], *p;
+	FILE *fp;
+	char line[LINE_SIZE + 1], *ext;
 
-	while (m_getline(line, LINESIZE) > 0) {
-		for (p = line + m_strpos(line, "ext=") + 4,i = 0; i < EXTSIZE; i++) {
-			printf("%c", *(p + i));
+	// 检查参数
+	if (argc < 2) {
+		fprintf(stderr, "error: empty argument\n");
+		return 1;
+	}
+
+	// 扫描文件
+	while (--argc) {
+		++argv;
+
+		if ((fp = fopen(*argv, "r")) == NULL)
+			continue;
+
+		while (fgets(line, LINE_SIZE, fp)) {
+			if ((ext = strstr(line, "ext=")) == NULL)
+				continue;
+
+			ext += 4;
+			*(ext + EXT_LENGTH) = '\0';
+			printf("%s\n", ext);
 		}
-		printf("\n");
 	}
 
 	return 0;
