@@ -22,7 +22,22 @@
 		printf("********** Macro Concatenation End **********\n");								\
 		// ## = #front#back
 
-//TODO:如何用宏实现类似于PHP中的$$val,$$func()可变变量
+/*
+Q:如何用宏实现类似PHP中的$$val,$$func()可变变量
+A:不可能，
+$$val ~= eval(char * "val")，即某变量通过char *idname表示
+1.宏的展开是在preprocess阶段处理的，原理是将#define NAME MARCO中，NAME的部分替换为MARCO
+2.预处理时程序未进行编译，无法确定宏参数
+由于1，可以得出，一切通过宏实现的内容，也可以不通过宏实现
+$$val这种用变量$val表示另一个变量的形式，在C语言中是通过指针实现的，无法通过字符串形式的变量名实现
+NOTE:
+#define EVAL(name) name
+int speed;
+//So speed == EVAL(speed)
+char name = "speed";
+//EVAL(name) == "speed"
+关于预处理，参见A.12 Preprocessing
+*/
 #define call_func(func, argv) func(argv)
 #define call_val(val) val
 
