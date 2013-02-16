@@ -1,5 +1,6 @@
 #include <stdlib.h>
 #include <ctype.h>
+#include <assert.h>
 #include "m_function.h"
 
 /* ****************************** Learn Function ****************************** */
@@ -60,6 +61,7 @@ int m_getline(char *str, int maxsize, FILE *fp)
 
 char *m_strcpy(char *to, const char *from)
 {
+	assert(to && from); // example: Use assert to check arguments
 	char *p;
 
 	p = to;
