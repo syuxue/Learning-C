@@ -1,14 +1,39 @@
 Function
+	gbk testing
+		return if 0x81-0xFE, 0x40-0x7E or 0x80-0xFE
+	gb2312 testing
+		return if 0xA1-0xF7, 0xA1-0xFE
 	convert [gb chinese char] to
 		[pinyin with tone] list
+			search gbk table
 		[pinyin with tone]
+			if gb2312
+				search gb2312 table
+			else if gbk 
+				serach gbk table
+			return struct pinyin
 	convert [pinyin with tone] to
 		[gb chinese char] list
+			search pinyin table
 	convert [pinyin without tone] to
 		[gb chinese char] list
+	search gb2312 table
+		compare char value to pinyin range
+	search gbk table
+		map gbk pinyin table to memory, use key-index
+	search pinyin table
 
 Data Struct
 	struct pinyin {
 		char *syllable;
 		unsigned int tone;
 	}
+
+Table Struct
+	gbk table
+		char:pinyin-list
+	gb2312 table
+		range:pinyin
+	pinyin table
+		pinyin:char-list
+
