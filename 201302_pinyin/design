@@ -1,0 +1,14 @@
+Function
+	convert [gb chinese char] to
+		[pinyin with tone] list
+		[pinyin with tone]
+	convert [pinyin with tone] to
+		[gb chinese char] list
+	convert [pinyin without tone] to
+		[gb chinese char] list
+
+Data Struct
+	struct pinyin {
+		char *syllable;
+		unsigned int tone;
+	}
