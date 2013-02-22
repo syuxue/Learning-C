@@ -1,3 +1,6 @@
+Reference
+	http://zh.wikipedia.org/wiki/GBK
+
 Function
 	gbk testing
 		return if 0x81-0xFE, 0x40-0x7E or 0x80-0xFE
