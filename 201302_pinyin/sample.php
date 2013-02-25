@@ -1,21 +1,21 @@
 <?php
 require 'pinyin.class.php';
 
-// ÉèÖÃÖÐÎÄ±àÂë
+// è®¾ç½®ä¸­æ–‡ç¼–ç 
 pinyin::setcharset('gb2312');
 
-// ×ªÎª×Ö·û´®ÎªÆ´Òô
-$str = 'ÄãºÃ,ÊÀ½ç! GB2312ÖÐÃ»ÓÐ¡°ÂG¡±Õâ¸ö×Ö';
+// è½¬ä¸ºå­—ç¬¦ä¸²ä¸ºæ‹¼éŸ³
+$str = 'ä½ å¥½,ä¸–ç•Œ! GB2312ä¸­æ²¡æœ‰â€œç¿¯â€è¿™ä¸ªå­—';
 echo $str."\n";
-//$str = iconv('UTF-8', 'GBK//IGNORE', $str);
+$str = iconv('UTF-8', 'GBK//IGNORE', $str);
 $res = pinyin::convstr($str, pinyin::PY_SPACE);
-//$res = iconv('GBK', 'UTF-8//IGNORE', $res);
+$res = iconv('GBK', 'UTF-8//IGNORE', $res);
 echo $res."\n";
 
-// ×ª»»Æ´ÒôÎª×Ö·û´®
+// è½¬æ¢æ‹¼éŸ³ä¸ºå­—ç¬¦ä¸²
 $pinyin = 'wang';
 $charlist = pinyin::getgbchar($pinyin);
 foreach ($charlist as &$char) {
-	//$char = iconv('GBK', 'UTF-8', $char);
+	$char = iconv('GBK', 'UTF-8', $char);
 }
 print_r($charlist);
