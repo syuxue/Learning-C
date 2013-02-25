@@ -43,6 +43,8 @@ int		m_strcasecmp(const char *to, const char *from);
 int		m_strend(const char *str, const char *needle);
 int		m_strpos(const char *str, const char *needle);
 int		m_strrpos(const char *str, const char *needle);
+int		m_iconv(const char *incode, const char *in, size_t insize,
+				const char *outcode, char *out, size_t outsize);
 
 /* ****************************** Math Function ****************************** */
 #define m_str2float(str, base) m_str2double(str, base)
