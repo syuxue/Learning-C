@@ -2,27 +2,31 @@
 #include "include/m_function.h"
 
 /* ****************************** Testing ****************************** */
-int
-is_gbk(unsigned char high, unsigned low)
-{
-	return 0;
-}
+enum {
+	NON_GBK = 0,
+	GBK_LEVEL_3, GBK_LEVEL_4, GBK_LEVEL_5,
+	GB2312_LEVEL_1, GB2312_LEVEL_2
+};
 
 int
-is_gb2312(unsigned char high, unsigned low)
+isgbk(unsigned char high, unsigned low)
 {
-	// reference: http://zh.wikipedia.org/wiki/GB_2312
-	if (high >= 0xA1 && high <= 0xF7
-		&& low >= 0xA1 && low <= 0xFE) {
-		return high <= 0xD7 ? 1 : 2;
+	if (high >= 0xA1 && high <= 0xF7 && low >= 0xA1 && low <= 0xFE) {
+		return high <= 0xD7 ? GB2312_LEVEL_1 : GB2312_LEVEL_2;
+	} else if (high >= 0x81 && high <= 0xA0 && low >= 0x40 && low <= 0xFE) {
+		return GBK_LEVEL_3;
+	} else if (high >= 0xAA && high <= 0xFE && low >= 0x40 && low <= 0xA0) {
+		return GBK_LEVEL_4;
+	} else if (high >= 0xA8 && high <= 0xA9 && low >= 0x40 && low <= 0xA0) {
+		return GBK_LEVEL_5;
 	} else
-		return 0;
+		return NON_GBK;
 }
 
 int
-is_ptr_gb2312(unsigned char *p)
+isgbk_ptr(unsigned char *p)
 {
-	return is_gb2312(*p, *(p + 1));
+	return isgbk(*p, *(p + 1));
 }
 
 /* ****************************** Main ****************************** */
@@ -30,13 +34,13 @@ int
 main(int argc, char *argv[])
 {
 	int nconv;
-	char str_utf[] = "鏖", str_gbk[1024];
+	char str_utf[] = "翯", str_gbk[1024];
 
 	// UTF-8
 	printf("UTF-8: (%u) %s\n", (unsigned int) strlen(str_utf), str_utf);
 
 	nconv = m_iconv("UTF-8", str_utf, strlen(str_utf),
-					"GBK", str_gbk, 2);
+					"GBK", str_gbk, sizeof str_gbk);
 	M_printd(nconv);
 
 	// GBK
@@ -48,7 +52,7 @@ main(int argc, char *argv[])
 			putchar('\n');
 	}
 	putchar('\n');
-	M_printd(is_ptr_gb2312((unsigned char *) str_gbk));
+	M_printd(isgbk_ptr((unsigned char *) str_gbk));
 
 	return 0;
 }
