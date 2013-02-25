@@ -8,9 +8,13 @@ enum {
 	GB2312_LEVEL_1, GB2312_LEVEL_2
 };
 
+#define isgbk_ptr(p) isgbk(*p, *(p + 1))
 int
 isgbk(unsigned char high, unsigned low)
 {
+	if (high < 0x81)
+		return NON_GBK; // fast return
+
 	if (high >= 0xA1 && high <= 0xF7 && low >= 0xA1 && low <= 0xFE) {
 		return high <= 0xD7 ? GB2312_LEVEL_1 : GB2312_LEVEL_2;
 	} else if (high >= 0x81 && high <= 0xA0 && low >= 0x40 && low <= 0xFE) {
@@ -23,11 +27,8 @@ isgbk(unsigned char high, unsigned low)
 		return NON_GBK;
 }
 
-int
-isgbk_ptr(unsigned char *p)
-{
-	return isgbk(*p, *(p + 1));
-}
+/* ****************************** Search ****************************** */
+
 
 /* ****************************** Main ****************************** */
 int
