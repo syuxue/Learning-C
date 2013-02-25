@@ -1,0 +1,2085 @@
+diff
+--- table_gb2312
++++ table_gbk
+
+-胺 an
++胺 an e
+
+-肮 ang
++肮 ang hang
+
+-凹 ao
++凹 ao wa
+
+-奥 ao
++奥 ao yu
+
+-叭 ba
++叭 ba pa
+
+-罢 ba
++罢 ba pi
+
+-扳 ban
++扳 ban pan
+
+-般 ban
++般 ban bo pan
+
+-拌 ban
++拌 ban pan
+
+-伴 ban
++伴 ban pan
+
+-膀 bang
++膀 bang pang
+
+-堡 bao
++堡 bao bu pu
+
+-臂 bi
++臂 bei bi
+
+-扁 bian
++扁 bian pian
+
+-勃 bo
++勃 bei bo
+
+-伯 bo
++伯 ba bai bo
+
+-泊 bo
++泊 bo po
+
+-卜 bu bo
++卜 bo bu
+
+-不 bu
++不 bu fou
+
+-簿 bu
++簿 bo bu
+
+-参 can cen shen
++参 can cen san shen
+
+-藏 cang
++藏 cang zang
+
+-厕 ce
++厕 ce si
+
+-侧 ce
++侧 ce ze zhai
+
+-查 cha
++查 cha zha
+
+-差 cha ci chai
++差 cha chai ci
+
+-拆 chai
++拆 ca chai
+
+-柴 chai
++柴 chai zhai
+
+-掺 chan
++掺 can chan shan xian
+
+-颤 chan
++颤 chan zhan
+
+-厂 chang
++厂 an chang han
+
+-嘲 chao
++嘲 chao zhao
+
+-称 cheng chen
++称 chen cheng
+
+-澄 cheng
++澄 cheng deng
+
+-尺 chi
++尺 che chi
+
+-虫 chong
++虫 chong hui
+
+-仇 chou
++仇 chou qiu
+
+-揣 chuai
++揣 chuai tuan zhui
+
+-串 chuan
++串 chuan guan
+
+-淳 chun
++淳 chun zhun
+
+-绰 chuo chao
++绰 chao chuo
+
+-从 cong
++从 cong zong
+
+-粹 cui
++粹 cui sui
+
+-撮 cuo
++撮 cuo zuo
+
+-大 da tai
++大 da dai tai
+
+-单 dan
++单 chan dan shan
+
+-掸 dan
++掸 dan shan
+
+-惮 dan
++惮 da dan
+
+-得 de
++得 de dei
+
+-底 di
++底 de di
+
+-地 di de
++地 de di
+
+-弟 di
++弟 di ti tui
+
+-佃 dian
++佃 dian tian
+
+-甸 dian
++甸 dian sheng tian
+
+-调 diao tiao
++调 diao tiao zhou
+
+-丁 ding
++丁 ding zheng
+
+-侗 dong
++侗 dong tong
+
+-恫 dong
++恫 dong tong
+
+-毒 du
++毒 dai du
+
+-读 du
++读 dou du
+
+-兑 dui
++兑 dui rui yue
+
+-蹲 dun
++蹲 cun dun
+
+-敦 dun dui
++敦 dui dun
+
+-顿 dun
++顿 du dun
+
+-堕 duo
++堕 duo hui
+
+-蛾 e
++蛾 e yi
+
+-而 er
++而 er neng
+
+-发 fa
++发 fa fei
+
+-番 fan
++番 fan pan
+
+-繁 fan
++繁 fan po
+
+-仿 fang
++仿 fang pang
+
+-份 fen
++份 bin fen
+
+-佛 fo
++佛 bi bo fo fu
+
+-拂 fu
++拂 bi fu
+
+-脯 fu
++脯 fu pu
+
+-副 fu
++副 fu pi
+
+-盖 gai
++盖 gai ge he
+
+-感 gan
++感 gan han
+
+-赣 gan
++赣 gan gong
+
+-港 gang
++港 gang jiang
+
+-皋 gao
++皋 gao hao yao
+
+-镐 gao
++镐 gao hao
+
+-告 gao gu
++告 gao
+
+-疙 ge
++疙 ge yi
+
+-革 ge
++革 ge ji
+
+-谷 gu
++谷 gu yu
+
+-雇 gu
++雇 gu hu
+
+-广 guang
++广 an guang
+
+-归 gui
++归 gui kui
+
+-龟 gui
++龟 gui jun qiu
+
+-柜 gui
++柜 gui ju
+
+-棍 gun
++棍 gun hun
+
+-害 hai
++害 hai he
+
+-夯 hang ben
++夯 ben hang
+
+-呵 he
++呵 a he ke
+
+-喝 he
++喝 he ye
+
+-核 he
++核 he hu
+
+-和 he huo hu
++和 he hu huo
+
+-合 he ge
++合 ge he
+
+-貉 he hao
++貉 hao he mo
+
+-嘿 hei
++嘿 hei mo
+
+-哼 heng
++哼 heng hng
+
+-亨 heng
++亨 heng peng
+
+-红 hong
++红 gong hong
+
+-唬 hu
++唬 hu xia
+
+-划 hua
++划 hua huai
+
+-坏 huai
++坏 huai pei pi
+
+-还 huan hai
++还 hai huan
+
+-荤 hun
++荤 hun xun
+
+-稽 ji
++稽 ji qi
+
+-伎 ji
++伎 ji qi
+
+-祭 ji
++祭 ji zhai
+
+-夹 jia ga qia
++夹 ga jia xia
+
+-家 jia
++家 gu jia jie
+
+-贾 jia gu
++贾 gu jia
+
+-假 jia
++假 jia xia
+
+-价 jia
++价 jia jie
+
+-奸 jian
++奸 gan jian
+
+-疆 jiang
++疆 jiang qiang
+
+-蕉 jiao
++蕉 jiao qiao
+
+-侥 jiao
++侥 jiao yao
+
+-脚 jiao
++脚 jiao jue
+
+-角 jiao
++角 jiao jue
+
+-缴 jiao
++缴 jiao zhuo
+
+-剿 jiao chao
++剿 chao jiao
+
+-揭 jie
++揭 jie qi
+
+-桔 jie
++桔 jie ju
+
+-解 jie
++解 jie xie
+
+-藉 jie ji
++藉 ji jie
+
+-芥 jie gai
++芥 gai jie
+
+-劲 jin
++劲 jin jing
+
+-景 jing
++景 jing ying
+
+-颈 jing
++颈 geng jing
+
+-净 jing
++净 cheng jing
+
+-拘 ju
++拘 gou ju
+
+-咀 ju
++咀 ju zui
+
+-句 ju
++句 gou ju
+
+-卷 juan
++卷 juan quan
+
+-觉 jue
++觉 jiao jue
+
+-咖 ka
++咖 ga ka
+
+-卡 ka
++卡 ka qia
+
+-咯 ka ge lo luo
++咯 ge ka lo luo
+
+-楷 kai
++楷 jie kai
+
+-扛 kang
++扛 gang kang
+
+-炕 kang
++炕 hang kang
+
+-苛 ke
++苛 he ke
+
+-咳 ke
++咳 hai ke
+
+-吭 keng hang
++吭 hang keng
+
+-苦 ku
++苦 gu ku
+
+-挎 kua
++挎 ku kua
+
+-傀 kui
++傀 gui kui
+
+-溃 kui
++溃 hui kui
+
+-括 kuo
++括 gua kuo
+
+-蜡 la
++蜡 la zha
+
+-腊 la
++腊 la xi
+
+-姥 lao
++姥 lao mu
+
+-勒 le
++勒 le lei
+
+-肋 lei
++肋 le lei
+
+-棱 leng
++棱 leng ling
+
+-隶 li
++隶 dai li
+
+-潦 liao lao
++潦 lao liao
+
+-了 liao le
++了 le liao
+
+-六 liu
++六 liu lu
+
+-碌 lu
++碌 liu lu
+
+-露 lu lou
++露 lou lu
+
+-陆 lu
++陆 liu lu
+
+-绿 lv
++绿 lu lv
+
+-纶 lun guan
++纶 guan lun
+
+-落 luo la
++落 la lao luo
+
+-络 luo
++络 lao luo
+
+-埋 mai
++埋 mai man
+
+-瞒 man
++瞒 man men
+
+-氓 mang
++氓 mang meng
+
+-毛 mao
++毛 ma mao
+
+-冒 mao
++冒 mao mo
+
+-么 me
++么 ma me yao
+
+-糜 mi mei
++糜 mei mi
+
+-谜 mi
++谜 mei mi
+
+-秘 mi
++秘 bi mi
+
+-泌 mi
++泌 bi mi
+
+-免 mian
++免 mian wen
+
+-模 mo
++模 mo mu
+
+-摩 mo
++摩 ma mo
+
+-抹 mo ma
++抹 ma mo
+
+-莫 mo
++莫 mo mu
+
+-陌 mo
++陌 bai mo
+
+-姆 mu
++姆 mu m
+
+-哪 na
++哪 na nai ne nei
+
+-呐 na
++呐 na ne
+
+-那 na
++那 na ne nei nuo
+
+-南 nan
++南 na nan
+
+-难 nan
++难 nan nuo
+
+-淖 nao
++淖 chuo nao zhuo
+
+-呢 ne
++呢 ne ni
+
+-内 nei
++内 na nei
+
+-能 neng
++能 nai neng
+
+-溺 ni
++溺 ni niao
+
+-捻 nian
++捻 nian nie
+
+-鸟 niao
++鸟 diao niao
+
+-尿 niao
++尿 niao sui
+
+-宁 ning
++宁 ning zhu
+
+-弄 nong
++弄 long nong
+
+-女 nv
++女 nv ru
+
+-疟 nue
++疟 nue yao
+
+-挪 nue
++挪 nuo
+
+-哦 o e
++哦 e o
+
+-派 pai
++派 pa pai
+
+-旁 pang
++旁 bang pang
+
+-胖 pang pan
++胖 pan pang
+
+-刨 pao
++刨 bao pao
+
+-炮 pao bao
++炮 bao pao
+
+-彭 peng
++彭 bang peng
+
+-频 pin
++频 bin pin
+
+-苹 ping
++苹 peng ping
+
+-屏 ping bing
++屏 bing ping
+
+-魄 po
++魄 bo po tuo
+
+-迫 po
++迫 pai po
+
+-莆 pu fu
++莆 pu
+
+-埔 pu bu
++埔 bu pu
+
+-朴 pu
++朴 piao po pu
+
+-曝 pu bao
++曝 bao pu
+
+-瀑 pu bao
++瀑 bao pu
+
+-期 qi
++期 ji qi
+
+-其 qi
++其 ji qi
+
+-奇 qi
++奇 ji qi
+
+-齐 qi
++齐 ji qi
+
+-骑 qi ji
++骑 qi
+
+-岂 qi
++岂 kai qi
+
+-契 qi
++契 qi qie xie
+
+-砌 qi
++砌 qi qie
+
+-铅 qian
++铅 qian yan
+
+-乾 qian
++乾 gan qian
+
+-浅 qian
++浅 jian qian
+
+-堑 qian
++堑 jian qian zan
+
+-嵌 qian
++嵌 kan qian
+
+-强 qiang jiang
++强 jiang qiang
+
+-抢 qiang
++抢 cheng qiang
+
+-俏 qiao
++俏 qiao xiao
+
+-茄 qie jia
++茄 jia qie
+
+-且 qie ju
++且 ju qie
+
+-亲 qin
++亲 qin qing
+
+-趋 qu
++趋 cu qu
+
+-区 qu
++区 ou qu
+
+-蛆 qu
++蛆 ju qu
+
+-渠 qu
++渠 ju qu
+
+-趣 qu
++趣 cu qu
+
+-圈 quan
++圈 juan quan
+
+-券 quan
++券 quan xuan
+
+-炔 que
++炔 gui que
+
+-雀 que
++雀 qiao que
+
+-若 ruo
++若 re ruo
+
+-洒 sa
++洒 sa xi
+
+-鳃 sai
++鳃 sai xi
+
+-色 se
++色 se shai
+
+-刹 sha cha
++刹 cha sha
+
+-杉 shan
++杉 sha shan
+
+-裳 shang chang
++裳 chang shang
+
+-梢 shao
++梢 sao shao
+
+-芍 shao
++芍 que shao
+
+-奢 she
++奢 sha she
+
+-摄 she
++摄 nie she
+
+-射 she
++射 she ye yi
+
+-沈 shen chen
++沈 chen shen
+
+-盛 sheng
++盛 cheng sheng
+
+-石 shi dan
++石 dan shi
+
+-拾 shi
++拾 she shi
+
+-什 shi shen
++什 shen shi
+
+-食 shi si
++食 shi si yi
+
+-识 shi
++识 shi zhi
+
+-氏 shi
++氏 shi zhi
+
+-熟 shu
++熟 shou shu
+
+-术 shu
++术 shu zhu
+
+-庶 shu
++庶 shu zhu
+
+-衰 shuai cui
++衰 cui shuai
+
+-谁 shui
++谁 shei shui
+
+-说 shuo yue shui
++说 shui shuo tuo yue
+
+-硕 shuo
++硕 shi shuo
+
+-思 si
++思 sai si
+
+-伺 si
++伺 ci si
+
+-似 si
++似 shi si
+
+-宿 su
++宿 su xiu
+
+-隋 sui
++隋 duo sui
+
+-孙 sun
++孙 sun xun
+
+-缩 suo su
++缩 su suo
+
+-她 ta
++她 jie ta
+
+-塔 ta
++塔 da ta
+
+-潭 tan
++潭 tan xun
+
+-汤 tang
++汤 shang tang
+
+-倘 tang
++倘 chang tang
+
+-淌 tang
++淌 chang tang
+
+-陶 tao
++陶 tao yao
+
+-提 ti
++提 di ti
+
+-体 ti
++体 ben ti
+
+-填 tian
++填 tian zhen
+
+-跳 tiao
++跳 tao tiao
+
+-驮 tuo
++驮 duo tuo
+
+-拓 tuo
++拓 ta tuo zhi
+
+-袜 wa
++袜 mo wa
+
+-宛 wan
++宛 wan yuan
+
+-万 wan
++万 mo wan
+
+-亡 wang
++亡 wang wu
+
+-尾 wei
++尾 wei yi
+
+-蔚 wei
++蔚 wei yu
+
+-涡 wo
++涡 guo wo
+
+-斡 wo
++斡 guan wo
+
+-无 wu
++无 mo wu
+
+-吾 wu
++吾 wu yu
+
+-洗 xi
++洗 xi xian
+
+-系 xi ji
++系 ji xi
+
+-戏 xi
++戏 hu hui xi
+
+-虾 xia
++虾 ha xia
+
+-厦 xia sha
++厦 sha xia
+
+-吓 xia
++吓 he xia
+
+-纤 xian qian
++纤 qian xian
+
+-县 xian
++县 xian xuan
+
+-详 xiang
++详 xiang yang
+
+-巷 xiang
++巷 hang xiang
+
+-削 xiao xue qiao
++削 xiao xue
+
+-嚣 xiao
++嚣 ao xiao
+
+-校 xiao jiao
++校 jiao xiao
+
+-些 xie
++些 suo xie
+
+-挟 xie
++挟 jia xie
+
+-邪 xie
++邪 xie xu ya ye yu
+
+-泄 xie
++泄 xie yi
+
+-信 xin
++信 shen xin
+
+-行 xing hang
++行 hang heng xing
+
+-休 xiu
++休 xiu xu
+
+-戌 xu
++戌 qu xu
+
+-嘘 xu shi
++嘘 shi xu
+
+-许 xu
++许 hu xu
+
+-畜 xu chu
++畜 chu xu
+
+-眩 xuan
++眩 huan xuan
+
+-血 xue
++血 xie xue
+
+-咽 yan
++咽 yan ye
+
+-厌 yan
++厌 ya yan
+
+-羊 yang
++羊 xiang yang
+
+-仰 yang
++仰 ang yang
+
+-噎 ye
++噎 sha ye
+
+-叶 ye
++叶 she xie ye
+
+-遗 yi
++遗 wei yi
+
+-疑 yi
++疑 ni yi
+
+-殷 yin yan
++殷 yan yin
+
+-涌 yong
++涌 chong yong
+
+-俞 yu shu
++俞 shu yu
+
+-愉 yu
++愉 tou yu
+
+-吁 yu xu
++吁 xu yu
+
+-育 yu
++育 yo yu
+
+-员 yuan
++员 yuan yun
+
+-约 yue
++约 yao yue
+
+-钥 yue yao
++钥 yao yue
+
+-咱 zan
++咱 za zan
+
+-攒 zan cuan
++攒 cuan zan
+
+-燥 zao
++燥 sao zao
+
+-责 ze
++责 ze zhai
+
+-择 ze
++择 ze zhai
+
+-泽 ze
++泽 shi ze
+
+-曾 zeng ceng
++曾 ceng zeng
+
+-扎 zha
++扎 za zha
+
+-喳 zha cha
++喳 cha zha
+
+-轧 zha ya ga
++轧 ga ya zha
+
+-栅 zha shan
++栅 ce shan shi zha
+
+-咋 zha ze za
++咋 za ze zha
+
+-粘 zhan nian
++粘 nian zhan
+
+-辗 zhan
++辗 nian zhan
+
+-崭 zhan
++崭 chan zhan
+
+-召 zhao
++召 shao zhao
+
+-折 zhe
++折 she zhe
+
+-这 zhe
++这 zhe zhei
+
+-帧 zhen ***
++帧 zhen
+
+-枝 zhi
++枝 qi zhi
+
+-吱 zhi
++吱 zhi zi
+
+-殖 zhi
++殖 shi zhi
+
+-峙 zhi
++峙 shi zhi
+
+-种 zhong
++种 chong zhong
+
+-重 zhong chong
++重 chong zhong
+
+-粥 zhou yu
++粥 yu zhou
+
+-朱 zhu
++朱 shu zhu
+
+-著 zhu
++著 zhu zhuo
+
+-助 zhu
++助 chu zhu
+
+-祝 zhu
++祝 zhou zhu
+
+-爪 zhua zhao
++爪 zhao zhua
+
+-拽 zhuai ye
++拽 ye zhuai
+
+-转 zhuan
++转 zhuai zhuan
+
+-赚 zhuan
++赚 zhuan zuan
+
+-椎 zhui chui
++椎 chui zhui
+
+-追 zhui
++追 dui zhui
+
+-琢 zhuo
++琢 zhuo zuo
+
+-着 zhuo zhe zhao
++着 zhao zhe zhuo
+
+-兹 zi
++兹 ci zi
+
+-仔 zi
++仔 zai zi
+
+-子 zi zai
++子 zi
+
+-综 zong zeng
++综 zeng zong
+
+-卒 zu cu
++卒 cu zu
+
+-柞 zuo zha
++柞 zha zuo
+
+-鬲 ge
++鬲 ge li
+
+-丨 shu
++丨 gun
+
+-禺 yu
++禺 ou yu
+
+-夭 yao
++夭 ao yao
+
+-丶 dian
++丶 zhu
+
+-亟 ji
++亟 ji qi
+
+-乜 nie mie
++乜 mie nie
+
+-芈 mi
++芈 mi mie
+
+-孛 bei
++孛 bei bo
+
+-嘏 gu
++嘏 gu jia
+
+-匮 kui
++匮 gui ju kui
+
+-剡 yan shan
++剡 shan yan
+
+-仨 san
++仨 sa
+
+-仡 ge
++仡 ge yi
+
+-伧 cang
++伧 cang chen
+
+-佚 yi
++佚 die yi
+
+-佝 gou
++佝 gou kou
+
+-伽 jia
++伽 ga jia qie
+
+-佴 nai
++佴 er nai
+
+-俟 si qi
++俟 qi si
+
+-倩 qian
++倩 qian qing
+
+-倭 wo
++倭 wei wo
+
+-偈 ji
++偈 ji jie
+
+-偻 lv lou
++偻 lou lv
+
+-僮 zhuang
++僮 tong zhuang
+
+-巽 xun
++巽 xun zhuan
+
+-裒 pou
++裒 pou you
+
+-讷 ne na
++讷 ne
+
+-诒 yi
++诒 dai yi
+
+-诘 jie
++诘 ji jie
+
+-诶 ei
++诶 ai ei xi
+
+-阽 dian
++阽 dian yan
+
+-陂 bei
++陂 bei pi po
+
+-郄 qie
++郄 qie xi
+
+-郦 li
++郦 li zhi
+
+-哿 ge
++哿 ge jia
+
+-凼 dan
++凼 dang
+
+-厶 si
++厶 mou si
+
+-圻 qi
++圻 qi yin
+
+-坻 di
++坻 chi di
+
+-垌 dong
++垌 dong tong
+
+-垓 ga
++垓 gai
+
+-垸 yuan
++垸 huan yuan
+
+-堋 peng
++堋 beng peng
+
+-艽 jiao
++艽 jiao qiu
+
+-艿 nai
++艿 nai reng
+
+-芫 yuan yan
++芫 yan yuan
+
+-芾 fu fei
++芾 fei fu
+
+-芘 pi bi
++芘 bi pi
+
+-芴 wu
++芴 hu wu
+
+-苴 ju
++苴 cha ju zu
+
+-茌 chi
++茌 cha chi
+
+-苕 tiao shao
++苕 shao tiao
+
+-荑 yi ti
++荑 ti yi
+
+-荛 rao
++荛 rao yao
+
+-荠 ji
++荠 ji qi
+
+-荼 tu
++荼 shu tu
+
+-莶 xian
++莶 lian xian
+
+-莨 liang
++莨 lang liang
+
+-萑 zhui huan
++萑 huan
+
+-菸 yan
++菸 yan yu
+
+-菪 dan
++菪 dang
+
+-菀 wan
++菀 wan yu yun
+
+-葚 shen
++葚 ren shen
+
+-蒉 kui
++蒉 kuai kui
+
+-葭 jia
++葭 jia xia
+
+-蓼 liao
++蓼 liao lu
+
+-蕃 fan
++蕃 bo fan
+
+-蘼 ni
++蘼 mi
+
+-奘 zang
++奘 zang zhuang
+
+-尢 you
++尢 wang you
+
+-拚 pan
++拚 fan pan pin
+
+-拮 jie
++拮 jia jie
+
+-拶 za
++拶 za zan
+
+-捋 lv
++捋 lv luo
+
+-掊 pou puo
++掊 pou
+
+-揲 she die ye
++揲 die she ye
+
+-擗 pi
++擗 bo pi
+
+-吖 a
++吖 a ya
+
+-呒 m fu
++呒 fu m
+
+-呔 dai
++呔 dai tai
+
+-吡 bi
++吡 bi pi
+
+-呗 bei
++呗 bai bei
+
+-呙 guo
++呙 gua guo he wa wai wo
+
+-吲 yin
++吲 shen yin
+
+-呷 xia
++呷 ga xia
+
+-呱 gua
++呱 gu gua
+
+-呶 nao
++呶 nao nu
+
+-咭 ji
++咭 ji qia xi
+
+-呲 zi
++呲 ci zi
+
+-哕 yue
++哕 hui yue
+
+-哜 ji
++哜 ji jie zhai
+
+-咤 zha
++咤 cha zha
+
+-哏 gen
++哏 gen hen
+
+-唔 wu
++唔 ng ngn wu
+
+-喏 re nuo
++喏 nuo re
+
+-啉 lin
++啉 lan lin
+
+-啁 zhou
++啁 tiao zhao zhou
+
+-啐 cui
++啐 cui qi
+
+-啜 chuo chuai
++啜 chuai chuo
+
+-喋 die
++喋 die zha
+
+-嗒 ta da
++嗒 da ta
+
+-喁 yong
++喁 yong yu
+
+-喔 wo
++喔 o wo
+
+-嗬 he
++嗬 a he ke
+
+-嗔 chen
++嗔 chen tian
+
+-嗄 a
++嗄 a sha
+
+-嗯 en
++嗯 ng
+
+-嗨 hai
++嗨 hai hei
+
+-嘞 lei
++嘞 le lei
+
+-噌 ceng
++噌 ceng cheng
+
+-噱 xue jue
++噱 jue xue
+
+-噫 yi
++噫 ai yi
+
+-囗 da kou
++囗 guo wei
+
+-帑 tang
++帑 nu tang
+
+-帱 chou
++帱 chou dao
+
+-峒 dong
++峒 dong tong
+
+-嶷 yi
++嶷 ni yi
+
+-彷 pang
++彷 fang pang
+
+-徵 zheng
++徵 zheng zhi
+
+-徼 jiao
++徼 jiao yao
+
+-彡 san pie
++彡 shan xian
+
+-猹 cha
++猹 cha zha
+
+-獠 liao
++獠 lao liao
+
+-夂 fan wen pang
++夂 zhi zhong
+
+-庳 bi
++庳 bei bi
+
+-廑 jin
++廑 jin qin
+
+-忉 lao
++忉 dao
+
+-忾 kai
++忾 kai xi
+
+-怍 zuo
++怍 zha zuo
+
+-怫 fu
++怫 fei fu
+
+-悝 kui
++悝 kui li
+
+-隳 hui
++隳 duo hui
+
+-阏 yan
++阏 e yan
+
+-阙 que
++阙 jue que
+
+-阚 kan han
++阚 kan
+
+-沌 dun
++沌 dun zhuan
+
+-汩 gu
++汩 gu yu
+
+-汶 wen
++汶 men wen
+
+-泷 shang long
++泷 long shuang
+
+-沲 duo
++沲 duo tuo
+
+-泺 luo
++泺 luo po
+
+-浍 kuai
++浍 hui kuai
+
+-浒 hu
++浒 hu xu
+
+-渎 du
++渎 dou du
+
+-淠 pi
++淠 pei pi
+
+-湮 yan
++湮 yan yin
+
+-湫 qiu jiao
++湫 jiao jiu qiu
+
+-溱 qin
++溱 qin zhen
+
+-潢 huang
++潢 guang huang
+
+-漯 luo ta
++漯 lei luo ta
+
+-澍 shu
++澍 shu zhu
+
+-濞 bi
++濞 bi pi
+
+-濯 zhuo
++濯 zhao zhuo
+
+-宕 dan
++宕 dang
+
+-宓 mi
++宓 fu mi
+
+-甯 ning
++甯 ning zhu
+
+-寰 huan
++寰 huan xian
+
+-孱 chan can
++孱 can chan
+
+-妃 fei
++妃 fei pei
+
+-姣 jiao
++姣 jiao xiao
+
+-娉 ping
++娉 pin ping
+
+-媪 ao
++媪 ao wo yun
+
+-骀 tai
++骀 dai tai
+
+-骠 biao
++骠 biao piao
+
+-纥 ge
++纥 ge he
+
+-纰 pi
++纰 bi pi
+
+-绠 geng
++绠 bing geng
+
+-缏 bian
++缏 bian pian
+
+-缪 miao mou miu
++缪 liao miao miu mou mu
+
+-缲 qiao
++缲 qiao sao
+
+-甾 zai
++甾 zai zi
+
+-玢 bin
++玢 bin fen
+
+-玟 min
++玟 min wen
+
+-珩 heng
++珩 hang heng
+
+-韫 yun
++韫 wen yun
+
+-杓 shao
++杓 biao shao
+
+-枞 cong
++枞 cong zong
+
+-枋 fang
++枋 bing fang
+
+-杷 pa
++杷 ba pa
+
+-柚 you
++柚 you zhu
+
+-柁 tuo
++柁 duo tuo
+
+-桡 rao
++桡 nao rao
+
+-栝 gua
++栝 gua kuo tian
+
+-桁 heng
++桁 hang heng
+
+-桧 hui gui
++桧 gui hui
+
+-棹 zhao
++棹 zhao zhuo
+
+-棣 di
++棣 dai di ti
+
+-楱 cou
++楱 cou zou
+
+-椹 zhen shen
++椹 shen zhen
+
+-槎 cha
++槎 cha zha
+
+-槭 qi
++槭 qi se
+
+-樘 tang
++樘 cheng tang
+
+-臧 zang
++臧 cang zang
+
+-旰 gan
++旰 gan han
+
+-炅 gui
++炅 gui jiong
+
+-耆 qi
++耆 qi shi
+
+-晟 sheng
++晟 cheng sheng
+
+-曛 xun
++曛 hun xun
+
+-贲 bi
++贲 ben bi
+
+-犍 jian
++犍 jian qian
+
+-挲 suo sa sha
++挲 sa sha suo
+
+-擘 bo
++擘 bai bo
+
+-攵 fan wen pang
++攵 pu
+
+-肜 rong
++肜 chen rong
+
+-肫 zhun
++肫 chun zhun
+
+-肷 qian xu
++肷 qian
+
+-朐 qu
++朐 chun qu xu
+
+-膻 shan
++膻 dan shan
+
+-膦 li
++膦 lin
+
+-欹 yi
++欹 qi
+
+-歙 xi she
++歙 she xi
+
+-於 yu
++於 wu yu
+
+-炜 wei
++炜 hui wei
+
+-焯 chao
++焯 chao zhuo
+
+-熨 yun yu
++熨 yu yun
+
+-焘 dao
++焘 dao tao
+
+-祗 di
++祗 zhi
+
+-禅 chan
++禅 chan shan
+
+-恁 nen
++恁 nen nin
+
+-戆 gang
++戆 gang zhuang
+
+-沓 ta da
++沓 da ta
+
+-砉 hua
++砉 hua xu
+
+-砬 la
++砬 la li
+
+-砩 fei
++砩 fei fu
+
+-硌 ge
++硌 ge luo
+
+-碣 jie
++碣 jie ya
+
+-眙 yi
++眙 chi yi
+
+-眭 sui
++眭 gui sui
+
+-睢 sui
++睢 hui sui
+
+-睥 bi
++睥 bi pi
+
+-瞑 ming
++瞑 mian ming
+
+-町 ding
++町 ding ting
+
+-畲 yu she
++畲 she
+
+-钯 ba
++钯 ba pa
+
+-钿 dian
++钿 dian tian
+
+-铊 ta
++铊 ta tuo
+
+-铤 ting
++铤 ding ting
+
+-铪 ha
++铪 ha ke
+
+-铫 yao
++铫 diao tiao yao
+
+-锒 liang
++锒 lang
+
+-镦 dui
++镦 dui dun
+
+-鹄 gu hu
++鹄 gu he hu
+
+-疠 li
++疠 lai li
+
+-疸 dan
++疸 da dan
+
+-瘕 jia
++瘕 jia xia
+
+-癞 lai
++癞 la lai
+
+-窕 tiao
++窕 tiao yao
+
+-窨 yin xun
++窨 xun yin
+
+-袢 pan
++袢 fan pan
+
+-袷 qia
++袷 jia jie qia
+
+-褚 chu
++褚 chu zhe zhu
+
+-裼 xi ti
++裼 ti xi
+
+-裨 bi
++裨 bi pi
+
+-褊 bian
++褊 bian pian
+
+-褶 zhe
++褶 xi zhe
+
+-疋 pi
++疋 pi shu ya
+
+-矜 jin guan qin
++矜 guan jin qin
+
+-覃 tan qin
++覃 qin tan
+
+-颉 jie xie
++颉 jia jie xie
+
+-蚣 gong
++蚣 gong zhong
+
+-蚵 he
++蚵 ke
+
+-蛸 xiao shao
++蛸 shao xiao
+
+-蟒 mang
++蟒 mang meng
+
+-蠡 li
++蠡 li luo
+
+-竺 zhu
++竺 du zhu
+
+-笮 zuo ze
++笮 ze zuo
+
+-筠 yun jun
++筠 jun yun
+
+-箐 jing
++箐 jing qing
+
+-箸 zhu
++箸 zhu zhuo
+
+-箢 yuan
++箢 wan yuan
+
+-舳 zhu
++舳 zhou zhu
+
+-羧 suo
++羧 suo zui
+
+-粢 zi
++粢 ci zi
+
+-糁 shen san
++糁 san shen
+
+-綮 qing
++綮 qi qing
+
+-繇 you yao zhou
++繇 yao you zhou
+
+-趄 qie ju
++趄 ju qie
+
+-酾 shai
++酾 shai shi
+
+-趵 bao
++趵 bao bo
+
+-趼 yan
++趼 jian
+
+-蹀 xie
++蹀 die
+
+-蹊 xi
++蹊 qi xi
+
+-蹴 cu
++蹴 cu jiu
+
+-躅 zhu
++躅 zhu zhuo
+
+-觜 zui zi
++觜 zi zui
+
+-靓 jiang liang
++靓 jing liang
+
+-龈 yin ken
++龈 ken yin
+
+-黾 min
++黾 meng mian min
+
+-隹 zhui
++隹 cui wei zhui
+
+-隽 juan
++隽 juan jun
+
+-瞿 qu
++瞿 ju qu
+
+-鲅 ba
++鲅 ba bo
+
+-鲑 gui
++鲑 gui hua xie
+
+-鲭 qing
++鲭 qing zheng
+
+-鳜 gui
++鳜 gui jue
+
+-鞔 man
++鞔 man men
+
+-鹘 hu gu
++鹘 gu hu
+
+-髂 qia
++髂 ge qia
+
+-麽 me ma yao mo
++麽 ma me mo
