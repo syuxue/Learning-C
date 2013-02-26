@@ -10,12 +10,15 @@ typedef struct {
 
 typedef struct {
 	PYNODE *c2p_head;
-	PYNODE *c2p_tail;
+	int c2p_length;
 } PYTABLE;
 
 // Function Declaration
 PYTABLE *
 py_open(const char *tablefile);
+
+void
+py_close(PYTABLE *ptable);
 
 GBCODE
 py_getcode(const char *str);

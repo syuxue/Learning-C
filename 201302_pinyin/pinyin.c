@@ -1,4 +1,3 @@
-#include "../include/m_function.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
@@ -35,7 +34,7 @@ py_open(const char *tablefile)
 		;
 	if ((ptable->c2p_head = malloc(linenum * sizeof (PYNODE))) == NULL)
 		return NULL;
-	ptable->c2p_tail = ptable->c2p_head + linenum - 1;
+	ptable->c2p_length = linenum;
 
 	// Store
 	fseek(fp, 0, SEEK_SET);
@@ -55,6 +54,17 @@ py_open(const char *tablefile)
 	}
 
 	return ptable;
+}
+
+void
+py_close(PYTABLE *ptable)
+{
+	PYNODE *pnode;
+
+	for (pnode = ptable->c2p_head; pnode < ptable->c2p_head + ptable->c2p_length; pnode++)
+		free(pnode->pinyin);
+	free(ptable->c2p_head);
+	free(ptable);
 }
 
 GBCODE
@@ -83,9 +93,9 @@ py_convchar_func(GBCHAR high, GBCHAR low, const PYTABLE *ptable)
 
 	code = py_getcode_func(high, low);
 	pnode = bsearch(
-		&code, 
-		ptable->c2p_head, 
-		ptable->c2p_tail - ptable->c2p_head + 1,
+		&code,
+		ptable->c2p_head,
+		ptable->c2p_length,
 		sizeof (PYNODE),
 		py_convchar_bsearch
 	);
