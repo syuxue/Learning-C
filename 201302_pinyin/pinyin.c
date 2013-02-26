@@ -1,59 +1,94 @@
+#include "../include/m_function.h"
+#include <stdio.h>
 #include <string.h>
-#include "include/m_function.h"
+#include <stdlib.h>
+#include "pinyin.h"
 
-/* ****************************** Testing ****************************** */
-enum {
-	NON_GBK = 0,
-	GBK_LEVEL_3, GBK_LEVEL_4, GBK_LEVEL_5,
-	GB2312_LEVEL_1, GB2312_LEVEL_2
-};
+#define PYLINESIZ 128
 
-#define isgbk_ptr(p) isgbk(*p, *(p + 1))
-int
-isgbk(unsigned char high, unsigned low)
+static int
+py_convchar_bsearch(const void *keyval, const void *datum)
 {
-	if (high < 0x81)
-		return NON_GBK; // fast return
-
-	if (high >= 0xA1 && high <= 0xF7 && low >= 0xA1 && low <= 0xFE) {
-		return high <= 0xD7 ? GB2312_LEVEL_1 : GB2312_LEVEL_2;
-	} else if (high >= 0x81 && high <= 0xA0 && low >= 0x40 && low <= 0xFE) {
-		return GBK_LEVEL_3;
-	} else if (high >= 0xAA && high <= 0xFE && low >= 0x40 && low <= 0xA0) {
-		return GBK_LEVEL_4;
-	} else if (high >= 0xA8 && high <= 0xA9 && low >= 0x40 && low <= 0xA0) {
-		return GBK_LEVEL_5;
-	} else
-		return NON_GBK;
+	return (int) *(GBCODE *) keyval - ((PYNODE *) datum)->code;
 }
 
-/* ****************************** Search ****************************** */
-
-
-/* ****************************** Main ****************************** */
-int
-main(int argc, char *argv[])
+PYTABLE *
+py_open(const char *tablefile)
 {
-	int nconv;
-	char str_utf[] = "翯", str_gbk[1024];
+	PYTABLE *ptable;
+	PYNODE *pnode;
+	GBCODE last;
+	FILE *fp;
+	int linenum, len;
+	char line[PYLINESIZ];
 
-	// UTF-8
-	printf("UTF-8: (%u) %s\n", (unsigned int) strlen(str_utf), str_utf);
+	// Open table file
+	if ((fp = fopen(tablefile, "r")) == NULL)
+		return NULL;
 
-	nconv = m_iconv("UTF-8", str_utf, strlen(str_utf),
-					"GBK", str_gbk, sizeof str_gbk);
-	M_printd(nconv);
+	// Alloc
+	if ((ptable = malloc(sizeof (PYTABLE))) == NULL)
+		return NULL;
 
-	// GBK
-	//printf("  GBK: (%u) %s\n", (unsigned int) strlen(str_gbk), str_gbk);
-	int i;
-	for (i = 0; i < nconv; i++) {
-		printf("%u, ", (unsigned char) str_gbk[i]);
-		if ((i + 1) % 10 == 0)
-			putchar('\n');
+	// Count	
+	for (linenum = 0; fgets(line, PYLINESIZ, fp); linenum++)
+		;
+	if ((ptable->c2p_head = malloc(linenum * sizeof (PYNODE))) == NULL)
+		return NULL;
+	ptable->c2p_tail = ptable->c2p_head + linenum - 1;
+
+	// Store
+	fseek(fp, 0, SEEK_SET);
+	for (last = 0, pnode = ptable->c2p_head; fgets(line, PYLINESIZ, fp); pnode++) {
+		pnode->code = py_getcode(line);
+		if (pnode->code <= last)
+			return NULL;
+
+		pnode->pinyin = strdup(strchr(line, ' ') + 1);
+
+		// Stripe new line
+		len = strlen(pnode->pinyin);
+		if (*(pnode->pinyin + len - 1) == '\n')
+			*(pnode->pinyin + len - 1) = '\0';
+
+		last = pnode->code;
 	}
-	putchar('\n');
-	M_printd(isgbk_ptr((unsigned char *) str_gbk));
 
-	return 0;
+	return ptable;
+}
+
+GBCODE
+py_getcode(const char *str)
+{
+	return py_getcode_func((GBCHAR) *str, (GBCHAR) *(str + 1));
+}
+
+GBCODE
+py_getcode_func(GBCHAR high, GBCHAR low)
+{
+	return (GBCODE) (high << 8) + low;
+}
+
+char *
+py_convchar(const char *str, const PYTABLE *ptable)
+{
+	return py_convchar_func((GBCHAR) *str, (GBCHAR) *(str + 1), ptable);
+}
+
+char *
+py_convchar_func(GBCHAR high, GBCHAR low, const PYTABLE *ptable)
+{
+	PYNODE *pnode;
+	GBCODE code;
+
+	code = py_getcode_func(high, low);
+	pnode = bsearch(
+		&code, 
+		ptable->c2p_head, 
+		ptable->c2p_tail - ptable->c2p_head + 1,
+		sizeof (PYNODE),
+		py_convchar_bsearch
+	);
+
+	return pnode != NULL ? pnode->pinyin : NULL;
 }
