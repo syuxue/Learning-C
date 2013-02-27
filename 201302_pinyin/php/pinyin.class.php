@@ -27,11 +27,11 @@ class pinyin
 
 		if ($high >= 0xA1 && $high <= 0xF7 && $low >= 0xA1 && $low <= 0xFE) {
 			return $high <= 0xD7 ? 1 : 2;
-		} else if ($high >= 0x81 && $high <= 0xA0 && $low >= 0x40 && $low <= 0xFE) {
+		} elseif ($high >= 0x81 && $high <= 0xA0 && $low >= 0x40 && $low <= 0xFE) {
 			return 3;
-		} else if ($high >= 0xAA && $high <= 0xFE && $low >= 0x40 && $low <= 0xA0) {
+		} elseif ($high >= 0xAA && $high <= 0xFE && $low >= 0x40 && $low <= 0xA0) {
 			return 4;
-		} else if ($high >= 0xA8 && $high <= 0xA9 && $low >= 0x40 && $low <= 0xA0) {
+		} elseif ($high >= 0xA8 && $high <= 0xA9 && $low >= 0x40 && $low <= 0xA0) {
 			return 5;
 		} else
 			return false;

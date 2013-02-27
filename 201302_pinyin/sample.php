@@ -1,5 +1,5 @@
 <?php
-require 'pinyin.class.php';
+require 'php/pinyin.class.php';
 
 /* 设置拼音对照表，在这里我们使用已定义的默认路径 PY_TABLE_DEFAULT
 if (pinyin::settable(dirname(__FILE__).'/../table/gb2312.gb') === false)
