@@ -1,11 +1,11 @@
+#include <stdio.h>
 #include <error.h>
 #include <errno.h>
 #include <iconv.h>
-#include "../include/m_function.h"
 
 int
-m_iconv(const char *incode, const char *in, size_t insize,
-		const char *outcode, char *out, size_t outsize)
+m_iconv(const char *incode, const char *in, size_t inleft,
+		const char *outcode, char *out, size_t outleft)
 {
 	char *inbuf, *outbuf;
 	size_t nconv;
@@ -24,12 +24,12 @@ m_iconv(const char *incode, const char *in, size_t insize,
 
 	// Convert
 	inbuf = (char *) in, outbuf = out;
-	nconv = iconv(cd, &inbuf, &insize, &outbuf, &outsize);
+	nconv = iconv(cd, &inbuf, &inleft, &outbuf, &outleft);
 	if (nconv == (size_t) -1) {
 		perror("iconv");
 		return -1;
 	}
-	if (outsize > 0)
+	if (outleft > 0)
 		*outbuf = '\0';
 
 	// iconv_close
@@ -38,4 +38,3 @@ m_iconv(const char *incode, const char *in, size_t insize,
 	
 	return (int) (outbuf - out);
 }
-
