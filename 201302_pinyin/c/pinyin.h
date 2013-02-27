@@ -1,4 +1,7 @@
-// Type
+#define PY_UPPER_I 1
+#define PY_UPPER_T 2
+#define PY_INITIAL 4
+
 typedef unsigned char GBCHAR;
 
 typedef unsigned int GBCODE;
@@ -13,12 +16,19 @@ typedef struct {
 	int c2p_length;
 } PYTABLE;
 
-// Function Declaration
 PYTABLE *
 py_open(const char *tablefile);
 
 void
-py_close(PYTABLE *ptable);
+py_close(PYTABLE *);
+
+int
+py_isgbk(const char *str);
+
+#define py_isgbk_high(high) ((GBCHAR) high >= 0x81)
+
+int
+py_isgbk_func(GBCHAR high, GBCHAR low);
 
 GBCODE
 py_getcode(const char *str);
@@ -27,7 +37,11 @@ GBCODE
 py_getcode_func(GBCHAR high, GBCHAR low);
 
 char *
-py_convchar(const char *str, const PYTABLE *ptable);
+py_getpinyin(const char *str, const PYTABLE *);
 
 char *
-py_convchar_func(GBCHAR high, GBCHAR low, const PYTABLE *ptable);
+py_getpinyin_func(GBCHAR high, GBCHAR low, const PYTABLE *);
+
+size_t
+py_convstr(char **inbuf, size_t *inleft, char **outbuf, size_t *outleft,
+	unsigned int flag, const PYTABLE *);
