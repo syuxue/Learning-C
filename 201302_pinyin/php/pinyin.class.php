@@ -1,9 +1,8 @@
 <?php
+define('PY_TABLE_DEFAULT', dirname(__FILE__).'/../table/gbk.gb');
 
 class pinyin
 {
-	const TABLE_GB2312	= 'table_gb2312.gb';
-	const TABLE_GBK		= 'table_gbk.gb';
 
 	const PY_TITLE		= 1;	// 拼音首字符大写
 	const PY_UPPER		= 2;	// 拼音大写
@@ -11,14 +10,12 @@ class pinyin
 	const PY_INITIAL	= 8;	// 只保留首字母
 	const PY_SPACE		= 16;	// 自动空格
 
-	static private $_charset = 'GBK';
-	static private $_table_c2p;
-	static private $_table_p2c;
+	static private $_tablefile = false;
+	static private $_table_c2p = array();
+	static private $_table_p2c = array();
 
-	public function setcharset($charset) {
-		$charset = strtoupper($charset);
-		if (in_array($charset, array('GBK', 'GB2312')))
-			self::$_charset = $charset;
+	public function settable($tablefile = PY_TABLE_DEFAULT) {
+		return self::$_tablefile = file_exists($tablefile) ? $tablefile : false;
 	}
 
 	public function isgbk($high, $low) {
@@ -116,22 +113,30 @@ class pinyin
 	}
 
 	private function _table_init_c2p() {
-		if (isset(self::$_table_c2p))
-			return;
+		if (self::$_table_c2p)
+			return true;
 
-		$tmp = file(constant('self::TABLE_'.self::$_charset));
+		if (!self::$_tablefile && !self::settable())
+			return false;
+
+		$tmp = file(self::$_tablefile);
 		foreach ($tmp as $line) {
 			$line = explode(' ', rtrim($line));
 			$gbchar = array_shift($line);
 			self::$_table_c2p[$gbchar] = $line;
 		}
+
+		return true;
 	}
 
 	private function _table_init_p2c() {
-		if (isset(self::$_table_p2c))
-			return;
+		if (self::$_table_p2c)
+			return true;
 
-		$tmp = file(constant('self::TABLE_'.self::$_charset));
+		if (!self::$_tablefile && !self::settable())
+			return false;
+
+		$tmp = file(self::$_tablefile);
 		foreach ($tmp as $line) {
 			$line = explode(' ', rtrim($line));
 			$gbchar = array_shift($line);
@@ -142,6 +147,8 @@ class pinyin
 					self::$_table_p2c[$pinyin] = array($gbchar);
 			}
 		}
+
+		return true;
 	}
 
 }
